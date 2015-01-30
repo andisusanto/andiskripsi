@@ -5,7 +5,7 @@
 class ApplicantRecruitment extends BaseObject{
    const TABLENAME = 'ApplicantRecruitment';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
    }
     public $Applicant;
     public $Recruitment;

@@ -1,13 +1,13 @@
 <?php include_once('BaseObject.php'); ?>
 <?php include_once('Exceptions.php'); ?>
-<?php include_once('GlobalFunction.php'); ?>
 <?php
-class Applicant extends BaseObject{
+class Applicant extends UserBase{
    const TABLENAME = 'Applicant';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
    }
     public $Address;
+    public $IsActive;
     public $DateOfBirth;
     public $Name;
     public $PlaceOfBirth;
@@ -15,10 +15,10 @@ class Applicant extends BaseObject{
 
    public function get_SaveQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "INSERT INTO ".self::TABLENAME."(Address,DateOfBirth,Name,PlaceOfBirth,PhoneNumber,LockField) VALUES('".$mySQLi->real_escape_string($this->Address)."','".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->DateOfBirth))."','".$mySQLi->real_escape_string($this->Name)."','".$mySQLi->real_escape_string($this->PlaceOfBirth)."','".$mySQLi->real_escape_string($this->PhoneNumber)."','".$mySQLi->real_escape_string($this->LockField)."')";}
+       return "INSERT INTO ".self::TABLENAME."(Address,IsActive,DateOfBirth,Name,PlaceOfBirth,UserName,StoredPassword,PhoneNumber,LockField) VALUES('".$mySQLi->real_escape_string($this->Address)."','".$mySQLi->real_escape_string($this->IsActive)."','".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->DateOfBirth))."','".$mySQLi->real_escape_string($this->Name)."','".$mySQLi->real_escape_string($this->PlaceOfBirth)."','".$mySQLi->real_escape_string($this->UserName)."','".$mySQLi->real_escape_string($this->StoredPassword)."','".$mySQLi->real_escape_string($this->PhoneNumber)."','".$mySQLi->real_escape_string($this->LockField)."')";}
    public function get_UpdateQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "UPDATE ".self::TABLENAME." SET Address = '".$mySQLi->real_escape_string($this->Address)."', DateOfBirth = '".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->DateOfBirth))."', Name = '".$mySQLi->real_escape_string($this->Name)."', PlaceOfBirth = '".$mySQLi->real_escape_string($this->PlaceOfBirth)."', PhoneNumber = '".$mySQLi->real_escape_string($this->PhoneNumber)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
+       return "UPDATE ".self::TABLENAME." SET Address = '".$mySQLi->real_escape_string($this->Address)."', IsActive = '".$mySQLi->real_escape_string($this->IsActive)."', DateOfBirth = '".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->DateOfBirth))."', Name = '".$mySQLi->real_escape_string($this->Name)."', PlaceOfBirth = '".$mySQLi->real_escape_string($this->PlaceOfBirth)."', UserName = '".$mySQLi->real_escape_string($this->UserName)."', StoredPassword = '".$mySQLi->real_escape_string($this->StoredPassword)."', PhoneNumber = '".$mySQLi->real_escape_string($this->PhoneNumber)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
    protected function get_TableName(){
        return self::TABLENAME;
    }
@@ -32,9 +32,12 @@ class Applicant extends BaseObject{
                $tmpApplicant = new Applicant($mySQLi);
                $tmpApplicant->Id = $row['Id'];
                $tmpApplicant->Address = $row['Address'];
+               $tmpApplicant->IsActive = $row['IsActive'];
                $tmpApplicant->DateOfBirth = strtotime($row['DateOfBirth']);
                $tmpApplicant->Name = $row['Name'];
                $tmpApplicant->PlaceOfBirth = $row['PlaceOfBirth'];
+               $tmpApplicant->UserName = $row['UserName'];
+               $tmpApplicant->StoredPassword = $row['StoredPassword'];
                $tmpApplicant->PhoneNumber = $row['PhoneNumber'];
 
                $tmpApplicant->LockField = $row['LockField'];
@@ -64,9 +67,12 @@ class Applicant extends BaseObject{
                $tmpApplicant->Id = $row['Id'];
                $tmpApplicant->LockField = $row['LockField'];
                $tmpApplicant->Address = $row['Address'];
+               $tmpApplicant->IsActive = $row['IsActive'];
                $tmpApplicant->DateOfBirth = strtotime($row['DateOfBirth']);
                $tmpApplicant->Name = $row['Name'];
                $tmpApplicant->PlaceOfBirth = $row['PlaceOfBirth'];
+               $tmpApplicant->UserName = $row['UserName'];
+               $tmpApplicant->StoredPassword = $row['StoredPassword'];
                $tmpApplicant->PhoneNumber = $row['PhoneNumber'];
 
                $Applicants[] = $tmpApplicant;

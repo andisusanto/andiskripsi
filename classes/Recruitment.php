@@ -5,7 +5,25 @@
 class Recruitment extends BaseObject{
    const TABLENAME = 'Recruitment';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
+   }
+   
+   const STATUS_ENTRY = 0;
+   const STATUS_POSTED = 1;
+   const STATUS_CLOSED = 2;
+   
+   public static function getStatusOptions()
+   {
+        return array(
+            self::STATUS_ENTRY => 'Entry',
+            self::STATUS_POSTED => 'Posted',
+            self::STATUS_CLOSED => 'Closed',
+        );
+   }
+   public function getStatusText()
+   {
+        $statusOptions = Recruitment::getStatusOptions();
+        return isset($statusOptions[$this->Status]) ? $statusOptions[$this->Status] : "unknown status {$this->Status}";
    }
     public $Description;
     public $TransDate;

@@ -38,6 +38,7 @@
 
         <!-- main stylesheet -->
             <link rel="stylesheet" href="css/beoro.css">
+            <link rel="stylesheet" href="css/main.css">
 
         <!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css"><![endif]-->
         <!--[if IE 9]><link rel="stylesheet" href="css/ie9.css"><![endif]-->
@@ -83,7 +84,21 @@
                         <div class="user-box">
                             <div class="user-box-inner">
                                 <div class="user-info">
-                                    Welcome, <strong><?php echo $_SESSION['CurrentAdminId']; ?></strong>
+                                    Welcome, <strong>
+                                    <?php
+                                        if ($_SESSION['CurrentAdminId'] == 'admin')
+                                        {
+                                            echo 'admin';
+                                        }
+                                        else
+                                        {
+                                            include_once('../classes/Admin.php');
+                                            include_once('../classes/Connection.php');
+                                            $Conn = Connection::get_DefaultConnection();
+                                            $admin = Admin::GetObjectByKey($Conn,$_SESSION['CurrentAdminId']);
+                                            echo $admin->UserName;
+                                        }
+                                    ?></strong>
                                     <ul class="unstyled">
                                         <li><a href="processlogout.php">Logout</a></li>
                                     </ul>

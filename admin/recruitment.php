@@ -6,34 +6,68 @@
                     <div class="span12">
                         <div class="w-box w-box-orange">
                             <div class="w-box-header">
-                                <h4>Column Reorder & toggle visibility</h4>
+                                <a href="javascript.void(0)" class="btn btn-inverse btn-mini" data-toggle="modal" data-target="#newrecruitment">New</a>
                             </div>
                             <div class="w-box-content">
                                 <table class="table table-striped table-condensed dt_colVis_Reorder">
                                 <thead>
                                     <tr>
-                                        <th>id</th>
-                                        <th>Short name</th>
-                                        <th>Long Name</th>
-                                        <th>Calling Code</th>
-                                        <th>ISO 2</th>
-                                        <th>ISO 3</th>
-                                        <th>ISO #</th>
-                                        <th>ccTLD</th>
-                                        <th>UN Member</th>
+                                        <th>Id</th>
+                                        <th>Description</th>
+                                        <th>TransDate</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>1</td><td>Afghanistan</td><td>Islamic Republic of Afghanistan</td><td>93</td><td>AF</td><td>AFG</td><td>004</td><td>.af</td><td>yes</td></tr>
-                                    <tr><td>2</td><td>Aland Islands</td><td>Åland Islands</td><td>358</td><td>AX</td><td>ALA</td><td>248</td><td>.ax</td><td>no</td></tr>
-                                    <tr><td>3</td><td>Albania</td><td>Republic of Albania</td><td>355</td><td>AL</td><td>ALB</td><td>008</td><td>.al</td><td>yes</td></tr>
-                                    <tr><td>4</td><td>Algeria</td><td>People's Democratic Republic of Algeria</td><td>213</td><td>DZ</td><td>DZA</td><td>012</td><td>.dz</td><td>yes</td></tr>
+                                
+                               <?php
+                                   include_once('../classes/Helper.php');
+                                   include_once('../classes/Recruitment.php');
+                                   include_once('../classes/Connection.php');
+                                   $Conn = Connection::get_DefaultConnection();
+                                   $Recruitments = Recruitment::LoadCollection($Conn);
+                                   foreach($Recruitments as $Recruitment){
+                               ?>
+                                    <tr><td><?php echo $Recruitment->get_Id(); ?></td><td><?php echo $Recruitment->Description; ?></td><td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td><td><?php echo $Recruitment->getStatusText(); ?></td><td><a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a> <a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a></td></tr>
+                                    <?php
+                                    }
+                                ?>
                                 </tbody>
                                 </table>
                             </div>
                         </div>
                 </div>
             </div>
+            <!-- modal new recruitment -->
+            <div class="modal fade" id="newrecruitment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">New Recruitment</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form name="frmNewRecruitment" id="frmNewRecruitment" method="POST" action="processnewrecruitment.php">
+                        <div class="input-group">
+                            <label class="control-label required">Description <span class="required">*</span></label>
+                            <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="control-label required">TransDate <span class="required">*</span></label>
+                            <input type="text" name="TransDate" class="form-control" placeholder="TransDate" aria-describedby="basic-addon2" />
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitment').submit();">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of modal new recruitment -->
 <?php include('footer.php'); ?>
             <script src="js/lib/datatables/js/jquery.dataTables.min.js"></script>
             <script src="js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js"></script>

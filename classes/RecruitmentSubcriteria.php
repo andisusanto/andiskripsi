@@ -5,7 +5,7 @@
 class RecruitmentSubcriteria extends BaseObject{
    const TABLENAME = 'RecruitmentSubcriteria';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
    }
     public $Description;
     public $RecruitmentCriteria;

@@ -5,7 +5,7 @@
 class ApplicantRecruitmentCriteria extends BaseObject{
    const TABLENAME = 'ApplicantRecruitmentCriteria';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
    }
     public $RecruitmentCriteria;
     public $RecruitmentSubcriteria;

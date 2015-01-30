@@ -5,7 +5,7 @@
 class RecruitmentCriteria extends BaseObject{
    const TABLENAME = 'RecruitmentCriteria';
    public function __construct($mySQLi){
-       parent::__contruct($mySQLi);
+       parent::__construct($mySQLi);
    }
     public $IndifferenceTreshold;
     public $Name;
