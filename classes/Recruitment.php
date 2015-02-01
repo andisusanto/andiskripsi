@@ -1,4 +1,5 @@
 <?php include_once('BaseObject.php'); ?>
+<?php include_once('RecruitmentCriteria.php'); ?>
 <?php include_once('Exceptions.php'); ?>
 <?php include_once('GlobalFunction.php'); ?>
 <?php

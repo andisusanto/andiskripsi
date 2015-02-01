@@ -1,5 +1,7 @@
 <?php $title = 'Recruitment'; ?>
 <?php include('header.php'); ?>
+            <link rel="stylesheet" href="js/lib/datatables/css/datatables_beoro.css">
+            <link rel="stylesheet" href="js/lib/datatables/extras/TableTools/media/css/TableTools.css">
 <?php
     include_once('../classes/Recruitment.php');
     include_once('../classes/Connection.php');
@@ -33,4 +35,93 @@
     <a href="recruitment.php"><button type="button" class="btn btn-default">Cancel</button></a>
     <button type="submit" class="btn btn-primary">Save changes</button>
 </form>
+
+            <h5>Criterias</h5>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="w-box w-box-orange">
+                            <div class="w-box-header">
+                                <a href="javascript.void(0)" class="btn btn-inverse btn-mini" data-toggle="modal" data-target="#newrecruitmentcriteria">New</a>
+                            </div>
+                            <div class="w-box-content">
+                                <table class="table table-striped table-condensed dt_colVis_Reorder">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Weight</th>
+                                        <th>Indifference Threshold</th>
+                                        <th>Preference Threshold</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                               <?php
+                                   $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
+                                   foreach($RecruitmentCriterias as $RecruitmentCriteria){
+                               ?>
+                                    <tr>
+                                    <td><?php echo $RecruitmentCriteria->get_Id(); ?></td>
+                                    <td><?php echo $RecruitmentCriteria->Name; ?></td>
+                                    <td><?php echo $RecruitmentCriteria->Weight; ?></td>
+                                    <td><?php echo $RecruitmentCriteria->IndifferenceThreshold; ?></td>
+                                    <td><?php echo $RecruitmentCriteria->PreferenceThreshold; ?></td>
+                                    <td><a href="editrecruitmentcriteria.php?Id=<?php echo $RecruitmentCriteria->get_Id(); ?>">Edit</a> <a href="processdeleterecruitmentcriteria.php?Id=<?php echo $RecruitmentCriteria->get_Id(); ?>">Delete</a></td></tr>
+                                    <?php
+                                    }
+                                ?>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- modal new recruitmentcriteria -->
+            <div class="modal fade" id="newrecruitmentcriteria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">New Recruitment</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form name="frmNewRecruitment" id="frmNewRecruitment" method="POST" action="processnewrecruitmentcriteria.php">
+                        <input type="hidden" name="Recruitment" value="<?php echo $Recruitment->get_Id(); ?>" />
+                        <div class="input-group">
+                            <label class="control-label required">Description <span class="required">*</span></label>
+                            <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="control-label required">Weight <span class="required">*</span></label>
+                            <input type="text" name="Weight" class="form-control" placeholder="Weight" aria-describedby="basic-addon2" />
+                        </div>
+
+                        <div class="input-group">
+                            <label class="control-label required">Indifference Threshold <span class="required">*</span></label>
+                            <input type="text" name="IndifferenceThreshold" class="form-control" placeholder="IndifferenceThreshold" aria-describedby="basic-addon2" />
+                        </div>
+
+                        <div class="input-group">
+                            <label class="control-label required">Preference Threshold <span class="required">*</span></label>
+                            <input type="text" name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2" />
+                        </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitment').submit();">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of modal new recruitmentcriteria -->
 <?php include('footer.php'); ?>
+            <script src="js/lib/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="js/lib/datatables/extras/ColReorder/media/js/ColReorder.min.js"></script>
+            <script src="js/lib/datatables/extras/ColVis/media/js/ColVis.min.js"></script>
+            <script src="js/lib/datatables/extras/TableTools/media/js/TableTools.min.js"></script>
+            <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
+            <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
+            <script src="js/beoro_datatables.js"></script>

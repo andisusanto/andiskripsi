@@ -7,18 +7,18 @@ class RecruitmentCriteria extends BaseObject{
    public function __construct($mySQLi){
        parent::__construct($mySQLi);
    }
-    public $IndifferenceTreshold;
+    public $IndifferenceThreshold;
     public $Name;
-    public $PreferenceTreshold;
+    public $PreferenceThreshold;
     public $Weight;
     public $Recruitment;
 
    public function get_SaveQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "INSERT INTO ".self::TABLENAME."(IndifferenceTreshold,Name,PreferenceTreshold,Weight,Recruitment,LockField) VALUES('".$mySQLi->real_escape_string($this->IndifferenceTreshold)."','".$mySQLi->real_escape_string($this->Name)."','".$mySQLi->real_escape_string($this->PreferenceTreshold)."','".$mySQLi->real_escape_string($this->Weight)."','".$mySQLi->real_escape_string($this->Recruitment)."','".$mySQLi->real_escape_string($this->LockField)."')";}
+       return "INSERT INTO ".self::TABLENAME."(IndifferenceThreshold,Name,PreferenceThreshold,Weight,Recruitment,LockField) VALUES('".$mySQLi->real_escape_string($this->IndifferenceThreshold)."','".$mySQLi->real_escape_string($this->Name)."','".$mySQLi->real_escape_string($this->PreferenceThreshold)."','".$mySQLi->real_escape_string($this->Weight)."','".$mySQLi->real_escape_string($this->Recruitment)."','".$mySQLi->real_escape_string($this->LockField)."')";}
    public function get_UpdateQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "UPDATE ".self::TABLENAME." SET IndifferenceTreshold = '".$mySQLi->real_escape_string($this->IndifferenceTreshold)."', Name = '".$mySQLi->real_escape_string($this->Name)."', PreferenceTreshold = '".$mySQLi->real_escape_string($this->PreferenceTreshold)."', Weight = '".$mySQLi->real_escape_string($this->Weight)."', Recruitment = '".$mySQLi->real_escape_string($this->Recruitment)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
+       return "UPDATE ".self::TABLENAME." SET IndifferenceThreshold = '".$mySQLi->real_escape_string($this->IndifferenceThreshold)."', Name = '".$mySQLi->real_escape_string($this->Name)."', PreferenceThreshold = '".$mySQLi->real_escape_string($this->PreferenceThreshold)."', Weight = '".$mySQLi->real_escape_string($this->Weight)."', Recruitment = '".$mySQLi->real_escape_string($this->Recruitment)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
    protected function get_TableName(){
        return self::TABLENAME;
    }
@@ -34,9 +34,9 @@ class RecruitmentCriteria extends BaseObject{
            if($row = $result->fetch_array()){
                $tmpRecruitmentCriteria = new RecruitmentCriteria($mySQLi);
                $tmpRecruitmentCriteria->Id = $row['Id'];
-               $tmpRecruitmentCriteria->IndifferenceTreshold = $row['IndifferenceTreshold'];
+               $tmpRecruitmentCriteria->IndifferenceThreshold = $row['IndifferenceThreshold'];
                $tmpRecruitmentCriteria->Name = $row['Name'];
-               $tmpRecruitmentCriteria->PreferenceTreshold = $row['PreferenceTreshold'];
+               $tmpRecruitmentCriteria->PreferenceThreshold = $row['PreferenceThreshold'];
                $tmpRecruitmentCriteria->Weight = $row['Weight'];
                $tmpRecruitmentCriteria->Recruitment = $row['Recruitment'];
 
@@ -66,9 +66,9 @@ class RecruitmentCriteria extends BaseObject{
                $tmpRecruitmentCriteria = new RecruitmentCriteria($mySQLi);
                $tmpRecruitmentCriteria->Id = $row['Id'];
                $tmpRecruitmentCriteria->LockField = $row['LockField'];
-               $tmpRecruitmentCriteria->IndifferenceTreshold = $row['IndifferenceTreshold'];
+               $tmpRecruitmentCriteria->IndifferenceThreshold = $row['IndifferenceThreshold'];
                $tmpRecruitmentCriteria->Name = $row['Name'];
-               $tmpRecruitmentCriteria->PreferenceTreshold = $row['PreferenceTreshold'];
+               $tmpRecruitmentCriteria->PreferenceThreshold = $row['PreferenceThreshold'];
                $tmpRecruitmentCriteria->Weight = $row['Weight'];
                $tmpRecruitmentCriteria->Recruitment = $row['Recruitment'];
 
