@@ -1,4 +1,4 @@
-<?php include_once('BaseObject.php'); ?>
+<?php include_once('UserBase.php'); ?>
 <?php include_once('Exceptions.php'); ?>
 <?php
 class Applicant extends UserBase{

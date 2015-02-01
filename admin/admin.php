@@ -2,6 +2,7 @@
 <?php include('header.php'); ?>
             <link rel="stylesheet" href="js/lib/datatables/css/datatables_beoro.css">
             <link rel="stylesheet" href="js/lib/datatables/extras/TableTools/media/css/TableTools.css">
+            <h3>Admin</h3>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="w-box w-box-orange">
@@ -28,7 +29,7 @@
                                    $Admins = Admin::LoadCollection($Conn);
                                    foreach($Admins as $Admin){
                                ?>
-                                    <tr><td><?php echo $Admin->get_Id(); ?></td><td><?php echo $Admin->UserName; ?></td><td><?php echo Helper::getBooleanTextValue($Admin->IsActive); ?></td><td><a href="processdeleteadmin.php?Id=<?php echo $Admin->get_Id(); ?>">Delete</a> <a href="editadmin.php?Id=<?php echo $Admin->get_Id(); ?>">Edit</a></td></tr>
+                                    <tr><td><?php echo $Admin->get_Id(); ?></td><td><?php echo $Admin->UserName; ?></td><td><?php echo Helper::getBooleanTextValue($Admin->IsActive); ?></td><td><a href="editadmin.php?Id=<?php echo $Admin->get_Id(); ?>">Edit</a> <a href="processdeleteadmin.php?Id=<?php echo $Admin->get_Id(); ?>">Delete</a></td></tr>
                                     <?php
                                     }
                                 ?>

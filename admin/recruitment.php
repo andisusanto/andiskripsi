@@ -2,6 +2,7 @@
 <?php include('header.php'); ?>
             <link rel="stylesheet" href="js/lib/datatables/css/datatables_beoro.css">
             <link rel="stylesheet" href="js/lib/datatables/extras/TableTools/media/css/TableTools.css">
+            <h3>Recruitment</h3>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="w-box w-box-orange">
@@ -29,7 +30,7 @@
                                    $Recruitments = Recruitment::LoadCollection($Conn);
                                    foreach($Recruitments as $Recruitment){
                                ?>
-                                    <tr><td><?php echo $Recruitment->get_Id(); ?></td><td><?php echo $Recruitment->Description; ?></td><td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td><td><?php echo $Recruitment->getStatusText(); ?></td><td><a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a> <a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a></td></tr>
+                                    <tr><td><?php echo $Recruitment->get_Id(); ?></td><td><?php echo $Recruitment->Description; ?></td><td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td><td><?php echo $Recruitment->getStatusText(); ?></td><td><a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a> <a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a></td></tr>
                                     <?php
                                     }
                                 ?>
