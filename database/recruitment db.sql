@@ -145,7 +145,7 @@ CREATE TABLE `recruitment` (
 
 /*!40000 ALTER TABLE `recruitment` DISABLE KEYS */;
 INSERT INTO `recruitment` (`Id`,`Description`,`TransDate`,`Status`,`LockField`) VALUES 
- (2,'Manager Accounting','2015-01-01 00:00:00',0,6);
+ (2,'Manager Accounting','2015-01-01 00:00:00',1,9);
 /*!40000 ALTER TABLE `recruitment` ENABLE KEYS */;
 
 
@@ -158,24 +158,24 @@ CREATE TABLE `recruitmentcriteria` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Recruitment` int(10) unsigned NOT NULL,
   `Name` varchar(45) NOT NULL,
-  `Weight` decimal(10,0) NOT NULL,
-  `IndifferenceTreshold` int(10) unsigned NOT NULL,
-  `PreferenceTreshold` int(10) unsigned NOT NULL,
+  `Weight` decimal(10,2) NOT NULL,
+  `IndifferenceThreshold` int(10) unsigned NOT NULL,
+  `PreferenceThreshold` int(10) unsigned NOT NULL,
   `LockField` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  KEY `FK_recruitmentcriteria_indifferencetreshold` (`IndifferenceTreshold`),
-  KEY `FK_recruitmentcriteria_preferencetreshold` (`PreferenceTreshold`),
   KEY `FK_recruitmentcriteria_recruitment` (`Recruitment`),
-  CONSTRAINT `FK_recruitmentcriteria_indifferencetreshold` FOREIGN KEY (`IndifferenceTreshold`) REFERENCES `recruitmentsubcriteria` (`Id`),
-  CONSTRAINT `FK_recruitmentcriteria_preferencetreshold` FOREIGN KEY (`PreferenceTreshold`) REFERENCES `recruitmentsubcriteria` (`Id`),
   CONSTRAINT `FK_recruitmentcriteria_recruitment` FOREIGN KEY (`Recruitment`) REFERENCES `recruitment` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recruitmentcriteria`
 --
 
 /*!40000 ALTER TABLE `recruitmentcriteria` DISABLE KEYS */;
+INSERT INTO `recruitmentcriteria` (`Id`,`Recruitment`,`Name`,`Weight`,`IndifferenceThreshold`,`PreferenceThreshold`,`LockField`) VALUES 
+ (4,2,'Age','2.00',1,4,7),
+ (5,2,'Highest Education','5.00',0,10,1),
+ (6,2,'English','3.00',0,10,1);
 /*!40000 ALTER TABLE `recruitmentcriteria` ENABLE KEYS */;
 
 
@@ -193,13 +193,23 @@ CREATE TABLE `recruitmentsubcriteria` (
   PRIMARY KEY (`Id`),
   KEY `FK_recruitmentsubcriteria_recruitmentcriteria` (`RecruitmentCriteria`),
   CONSTRAINT `FK_recruitmentsubcriteria_recruitmentcriteria` FOREIGN KEY (`RecruitmentCriteria`) REFERENCES `recruitmentcriteria` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recruitmentsubcriteria`
 --
 
 /*!40000 ALTER TABLE `recruitmentsubcriteria` DISABLE KEYS */;
+INSERT INTO `recruitmentsubcriteria` (`Id`,`RecruitmentCriteria`,`Description`,`Value`,`LockField`) VALUES 
+ (1,4,'19',19,0),
+ (2,4,'20',20,0),
+ (3,4,'21',21,0),
+ (4,5,'Senior High School',1,0),
+ (5,5,'Bachelor',2,0),
+ (6,5,'Master',3,0),
+ (7,6,'Beginner',1,0),
+ (8,6,'Inter-Mediate',2,0),
+ (9,6,'Advanced',3,0);
 /*!40000 ALTER TABLE `recruitmentsubcriteria` ENABLE KEYS */;
 
 
