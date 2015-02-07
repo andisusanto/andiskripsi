@@ -11,37 +11,47 @@
     $RecruitmentCriteria = RecruitmentCriteria::GetObjectByKey($Conn, $_GET['Id']);
     $Recruitment = Recruitment::GetObjectByKey($Conn, $RecruitmentCriteria->Recruitment);
 ?>
-<h3>Edit Recruitment Criteria</h3>
-<form name="frmEditRecruitmentCriteria" method="POST" action="processeditrecruitmentcriteria.php">
-    <input type="hidden" name="Id" value="<?php echo $RecruitmentCriteria->get_Id(); ?>" />
-    <div class="input-group">
-        <label class="control-label required">Recruitment</label><?php echo $Recruitment->Description; ?>
-    </div>
+<div class="w-box-header">
+    <h4>Edit Recruitment Criteria</h4>
+</div>
+<div class="w-box-content cnt_a">
+    <div class="row-fluid">
+        <div class="span6">
+            <form name="frmEditRecruitmentCriteria" method="POST" action="processeditrecruitmentcriteria.php">
+                <input type="hidden" name="Id" value="<?php echo $RecruitmentCriteria->get_Id(); ?>" />
+                <div class="input-group">
+                    <label class="control-label required">Recruitment</label><?php echo $Recruitment->Description; ?>
+                </div>
     
-    <div class="input-group">
-        <label class="control-label required">Name</label>
-        <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"><?php echo $RecruitmentCriteria->Name; ?></textarea>
-    </div>
+                <div class="input-group">
+                    <label class="control-label required">Name</label>
+                    <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"><?php echo $RecruitmentCriteria->Name; ?></textarea>
+                </div>
 
-    <div class="input-group">
-        <label class="control-label">Weight</label>
-        <input type="text" name="Weight" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->Weight; ?>"/>
-    </div>
+                <div class="input-group">
+                    <label class="control-label">Weight</label>
+                    <input type="text" name="Weight" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->Weight; ?>"/>
+                </div>
 
-    <div class="input-group">
-        <label class="control-label">Indifference Threshold</label>
-        <input type="text" name="IndifferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->IndifferenceThreshold; ?>"/>
-    </div>
+                <div class="input-group">
+                    <label class="control-label">Indifference Threshold</label>
+                    <input type="text" name="IndifferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->IndifferenceThreshold; ?>"/>
+                </div>
 
-    <div class="input-group">
-        <label class="control-label">Preference Threshold</label>
-        <input type="text" name="PreferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->PreferenceThreshold; ?>"/>
+                <div class="input-group">
+                    <label class="control-label">Preference Threshold</label>
+                    <input type="text" name="PreferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->PreferenceThreshold; ?>"/>
+                </div>
+                <a href="editrecruitment.php?Id=<?php echo $RecruitmentCriteria->Recruitment; ?>"><button type="button" class="btn btn-default">Cancel</button></a>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+        </div>
     </div>
-    <a href="editrecruitment.php?Id=<?php echo $RecruitmentCriteria->Recruitment; ?>"><button type="button" class="btn btn-default">Cancel</button></a>
-    <button type="submit" class="btn btn-primary">Save changes</button>
-</form>
+</div>
 
-            <h5>Subcriterias</h5>
+<div class="w-box-header">
+    <h5>Subcriterias</h5>
+</div>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="w-box w-box-orange">

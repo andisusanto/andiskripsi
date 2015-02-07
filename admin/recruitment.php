@@ -30,7 +30,17 @@
                                    $Recruitments = Recruitment::LoadCollection($Conn);
                                    foreach($Recruitments as $Recruitment){
                                ?>
-                                    <tr><td><?php echo $Recruitment->get_Id(); ?></td><td><?php echo $Recruitment->Description; ?></td><td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td><td><?php echo $Recruitment->getStatusText(); ?></td><td><a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a> <a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a></td></tr>
+                                    <tr>
+                                        <td><?php echo $Recruitment->get_Id(); ?></td>
+                                        <td><?php echo $Recruitment->Description; ?></td>
+                                        <td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td>
+                                        <td><?php echo $Recruitment->getStatusText(); ?></td>
+                                        <td>
+                                            <a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a>
+                                            <a href="analysis.php?Id=<?php echo $Recruitment->get_Id(); ?>">Analysis</a>
+                                            <a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a>
+                                        </td>
+                                    </tr>
                                     <?php
                                     }
                                 ?>

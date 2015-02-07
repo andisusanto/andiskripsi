@@ -11,6 +11,6 @@ try {
     $Conn->Commit();
     header('location:admin.php');
 } catch (Exception $e) {
-    include('error_handler.php');
+    //include('error_handler.php');
 }
 ?>

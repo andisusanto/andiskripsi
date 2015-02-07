@@ -8,35 +8,45 @@
     $Conn = Connection::get_DefaultConnection();
     $Recruitment = Recruitment::GetObjectByKey($Conn, $_GET['Id']);
 ?>
-<h3>Edit Recruitment</h3>
-<form name="frmEditRecruitment" method="POST" action="processeditrecruitment.php">
-    <input type="hidden" name="Id" value="<?php echo $Recruitment->get_Id(); ?>" />
-    <div class="input-group">
-        <label class="control-label required">Description <span class="required">*</span></label>
-        <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
-    </div>
+<div class="w-box-header">
+    <h4>Edit Recruitment</h4>
+</div>
+<div class="w-box-content cnt_a">
+    <div class="row-fluid">
+        <div class="span6">
+            <form name="frmEditRecruitment" method="POST" action="processeditrecruitment.php">
+                <input type="hidden" name="Id" value="<?php echo $Recruitment->get_Id(); ?>" />
+                <div class="input-group">
+                    <label class="control-label required">Description <span class="required">*</span></label>
+                    <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
+                </div>
 
-    <div class="input-group">
-        <label class="control-label">TransDate</label>
-        <input type="text" name="TransDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->TransDate); ?>"/>
-    </div>
+                <div class="input-group">
+                    <label class="control-label">TransDate</label>
+                    <input type="text" name="TransDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->TransDate); ?>"/>
+                </div>
 
-    <div class="input-group">
-        <label class="control-label">Status</label>
-        <select name="Status" class="form-control" aria-describedby="basic-addon2">
-        <?php
-            foreach (Recruitment::getStatusOptions() as $StatusKey => $StatusText)
-            {
-                echo "<option value='".$StatusKey."'".(($StatusKey == $Recruitment->Status) ? "selected" : "").">".$StatusText."</option>";
-            }
-        ?>
-        </select>
+                <div class="input-group">
+                    <label class="control-label">Status</label>
+                    <select name="Status" class="form-control" aria-describedby="basic-addon2">
+                    <?php
+                        foreach (Recruitment::getStatusOptions() as $StatusKey => $StatusText)
+                        {
+                            echo "<option value='".$StatusKey."'".(($StatusKey == $Recruitment->Status) ? "selected" : "").">".$StatusText."</option>";
+                        }
+                    ?>
+                    </select>
+                </div>
+                <a href="recruitment.php"><button type="button" class="btn btn-default">Cancel</button></a>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+        </div>
     </div>
-    <a href="recruitment.php"><button type="button" class="btn btn-default">Cancel</button></a>
-    <button type="submit" class="btn btn-primary">Save changes</button>
-</form>
+</div>
 
-            <h5>Criterias</h5>
+<div class="w-box-header">
+    <h5>Criterias</h5>
+</div>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="w-box w-box-orange">
