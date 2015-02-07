@@ -27,15 +27,17 @@ class Recruitment extends BaseObject{
         return isset($statusOptions[$this->Status]) ? $statusOptions[$this->Status] : "unknown status {$this->Status}";
    }
     public $Description;
+    public $Name;
     public $TransDate;
+    public $EstimationCloseDate;
     public $Status;
 
    public function get_SaveQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "INSERT INTO ".self::TABLENAME."(Description,TransDate,Status,LockField) VALUES('".$mySQLi->real_escape_string($this->Description)."','".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->TransDate))."','".$mySQLi->real_escape_string($this->Status)."','".$mySQLi->real_escape_string($this->LockField)."')";}
+       return "INSERT INTO ".self::TABLENAME."(Description,Name,TransDate,EstimationCloseDate,Status,LockField) VALUES('".$mySQLi->real_escape_string($this->Description)."','".$mySQLi->real_escape_string($this->Name)."','".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->TransDate))."','".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->EstimationCloseDate))."','".$mySQLi->real_escape_string($this->Status)."','".$mySQLi->real_escape_string($this->LockField)."')";}
    public function get_UpdateQuery(){
        $mySQLi = $this->get_mySQLi();
-       return "UPDATE ".self::TABLENAME." SET Description = '".$mySQLi->real_escape_string($this->Description)."', TransDate = '".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->TransDate))."', Status = '".$mySQLi->real_escape_string($this->Status)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
+       return "UPDATE ".self::TABLENAME." SET Description = '".$mySQLi->real_escape_string($this->Description)."', Name = '".$mySQLi->real_escape_string($this->Name)."', TransDate = '".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->TransDate))."', EstimationCloseDate = '".$mySQLi->real_escape_string(GlobalFunction::getDateQuery($this->EstimationCloseDate))."', Status = '".$mySQLi->real_escape_string($this->Status)."', LockField = '".$mySQLi->real_escape_string($this->LockField)."' WHERE Id = '".$mySQLi->real_escape_string($this->Id)."'";}
    protected function get_TableName(){
        return self::TABLENAME;
    }
@@ -52,7 +54,9 @@ class Recruitment extends BaseObject{
                $tmpRecruitment = new Recruitment($mySQLi);
                $tmpRecruitment->Id = $row['Id'];
                $tmpRecruitment->Description = $row['Description'];
+               $tmpRecruitment->Name = $row['Name'];
                $tmpRecruitment->TransDate = strtotime($row['TransDate']);
+               $tmpRecruitment->EstimationCloseDate = strtotime($row['EstimationCloseDate']);
                $tmpRecruitment->Status = $row['Status'];
 
                $tmpRecruitment->LockField = $row['LockField'];
@@ -82,7 +86,9 @@ class Recruitment extends BaseObject{
                $tmpRecruitment->Id = $row['Id'];
                $tmpRecruitment->LockField = $row['LockField'];
                $tmpRecruitment->Description = $row['Description'];
+               $tmpRecruitment->Name = $row['Name'];
                $tmpRecruitment->TransDate = strtotime($row['TransDate']);
+               $tmpRecruitment->EstimationCloseDate = strtotime($row['EstimationCloseDate']);
                $tmpRecruitment->Status = $row['Status'];
 
                $Recruitments[] = $tmpRecruitment;

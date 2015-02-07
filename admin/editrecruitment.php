@@ -17,13 +17,23 @@
             <form name="frmEditRecruitment" method="POST" action="processeditrecruitment.php">
                 <input type="hidden" name="Id" value="<?php echo $Recruitment->get_Id(); ?>" />
                 <div class="input-group">
-                    <label class="control-label required">Description <span class="required">*</span></label>
-                    <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
+                    <label class="control-label required">Name <span class="required">*</span></label>
+                    <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"><?php echo $Recruitment->Name; ?></textarea>
                 </div>
 
                 <div class="input-group">
                     <label class="control-label">TransDate</label>
                     <input type="text" name="TransDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->TransDate); ?>"/>
+                </div>
+                
+                <div class="input-group">
+                    <label class="control-label required">Description <span class="required">*</span></label>
+                    <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label class="control-label">Estimation Close Date</label>
+                    <input type="text" name="EstimationCloseDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->EstimationCloseDate); ?>"/>
                 </div>
 
                 <div class="input-group">

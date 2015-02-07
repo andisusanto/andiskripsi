@@ -14,8 +14,9 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Description</th>
+                                        <th>Name</th>
                                         <th>TransDate</th>
+                                        <th>Estimation Close Date</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -32,8 +33,9 @@
                                ?>
                                     <tr>
                                         <td><?php echo $Recruitment->get_Id(); ?></td>
-                                        <td><?php echo $Recruitment->Description; ?></td>
+                                        <td><?php echo $Recruitment->Name; ?></td>
                                         <td><?php echo date('Y-m-d',$Recruitment->TransDate); ?></td>
+                                        <td><?php echo date('Y-m-d',$Recruitment->EstimationCloseDate); ?></td>
                                         <td><?php echo $Recruitment->getStatusText(); ?></td>
                                         <td>
                                             <a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a>
@@ -61,13 +63,23 @@
                   <div class="modal-body">
                     <form name="frmNewRecruitment" id="frmNewRecruitment" method="POST" action="processnewrecruitment.php">
                         <div class="input-group">
-                            <label class="control-label required">Description <span class="required">*</span></label>
-                            <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                            <label class="control-label required">Name <span class="required">*</span></label>
+                            <input type="text" name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon2" />
                         </div>
-
+                        
                         <div class="input-group">
                             <label class="control-label required">TransDate <span class="required">*</span></label>
                             <input type="text" name="TransDate" class="form-control" placeholder="TransDate" aria-describedby="basic-addon2" />
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="control-label required">Description <span class="required">*</span></label>
+                            <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label class="control-label required">Estimation Close Date <span class="required">*</span></label>
+                            <input type="text" name="EstimationCloseDate" class="form-control" placeholder="EstimationCloseDate" aria-describedby="basic-addon2" />
                         </div>
                     </form>
                   </div>
