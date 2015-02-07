@@ -1,5 +1,6 @@
 <?php include_once('BaseObject.php'); ?>
 <?php include_once('Exceptions.php'); ?>
+<?php include_once('RecruitmentSubcriteria.php'); ?>
 <?php include_once('GlobalFunction.php'); ?>
 <?php
 class RecruitmentCriteria extends BaseObject{
@@ -27,6 +28,12 @@ class RecruitmentCriteria extends BaseObject{
    }
    public function get_RecruitmentSubcriteria($page=0,$totalitem=0){
        return RecruitmentSubcriteria::LoadCollection($this->get_mySQLi(),"RecruitmentCriteria = ".$this->Id,'Id DESC',$page,$totalitem);
+   }
+   public function get_RecruitmentMinimalValueSubcriteria()
+   {
+       $RecruitmentCriterias =  RecruitmentSubcriteria::LoadCollection($this->get_mySQLi(),"RecruitmentCriteria = ".$this->Id,'Value ASC',0,1);
+       if (count($RecruitmentCriterias) == 0) throw new Exception("No subcriteria found");
+       return $RecruitmentCriterias[0];
    }
 
    public static function GetObjectByKey($mySQLi, $Id){

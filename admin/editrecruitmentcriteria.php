@@ -20,7 +20,7 @@
             <form name="frmEditRecruitmentCriteria" method="POST" action="processeditrecruitmentcriteria.php">
                 <input type="hidden" name="Id" value="<?php echo $RecruitmentCriteria->get_Id(); ?>" />
                 <div class="input-group">
-                    <label class="control-label required">Recruitment</label><?php echo $Recruitment->Description; ?>
+                    <label class="control-label required">Recruitment</label><?php echo $Recruitment->Name; ?>
                 </div>
     
                 <div class="input-group">
