@@ -43,6 +43,30 @@ class ApplicantRecruitmentCriteria extends BaseObject{
            throw new InvalidQueryException;
        }
    }
+   public static function GetObjectByCriteria($mySQLi, $Criteria)
+   {
+        $tmpQuery = "SELECT  * FROM ".self::TABLENAME." WHERE ".$Criteria." LIMIT 1";
+       if($result = $mySQLi->query($tmpQuery)){
+           if($row = $result->fetch_array()){
+               $tmpApplicantRecruitmentCriteria = new ApplicantRecruitmentCriteria($mySQLi);
+               $tmpApplicantRecruitmentCriteria->Id = $row['Id'];
+               $tmpApplicantRecruitmentCriteria->RecruitmentCriteria = $row['RecruitmentCriteria'];
+               $tmpApplicantRecruitmentCriteria->RecruitmentSubcriteria = $row['RecruitmentSubcriteria'];
+               $tmpApplicantRecruitmentCriteria->ApplicantRecruitment = $row['ApplicantRecruitment'];
+
+               $tmpApplicantRecruitmentCriteria->LockField = $row['LockField'];
+               return $tmpApplicantRecruitmentCriteria;
+           }
+           else
+           {
+               return false;
+           }
+       }
+       else
+       {
+           throw new InvalidQueryException;
+       }
+   }
    public static function LoadCollection($mySQLi, $Criteria = '1 = 1',$sort='',$page=0,$totalitem=0){
        $tmpQuery = "SELECT  * FROM ".self::TABLENAME." WHERE ".$mySQLi->real_escape_string($Criteria);
        if ($sort != ''){ $tmpQuery .= " "."ORDER BY ".$sort; }

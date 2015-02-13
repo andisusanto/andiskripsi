@@ -1,5 +1,6 @@
 <?php include_once('UserBase.php'); ?>
 <?php include_once('Exceptions.php'); ?>
+<?php include_once('GlobalFunction.php'); ?>
 <?php
 class Applicant extends UserBase{
    const TABLENAME = 'Applicant';
@@ -53,6 +54,35 @@ class Applicant extends UserBase{
            throw new InvalidQueryException;
        }
    }
+   
+   public static function GetApplicantByUserName($mySQLi, $UserName){
+       if($result = $mySQLi->query("SELECT * FROM ".self::TABLENAME." WHERE UserName = '".$mySQLi->real_escape_string($UserName)."' LIMIT 1")){
+           if($row = $result->fetch_array()){
+               $tmpApplicant = new Applicant($mySQLi);
+               $tmpApplicant->Id = $row['Id'];
+               $tmpApplicant->Address = $row['Address'];
+               $tmpApplicant->IsActive = $row['IsActive'];
+               $tmpApplicant->DateOfBirth = strtotime($row['DateOfBirth']);
+               $tmpApplicant->Name = $row['Name'];
+               $tmpApplicant->PlaceOfBirth = $row['PlaceOfBirth'];
+               $tmpApplicant->UserName = $row['UserName'];
+               $tmpApplicant->StoredPassword = $row['StoredPassword'];
+               $tmpApplicant->PhoneNumber = $row['PhoneNumber'];
+
+               $tmpApplicant->LockField = $row['LockField'];
+               return $tmpApplicant;
+           }
+           else
+           {
+               return false;
+           }
+       }
+       else
+       {
+           throw new InvalidQueryException;
+       }
+   }
+   
    public static function LoadCollection($mySQLi, $Criteria = '1 = 1',$sort='',$page=0,$totalitem=0){
        $tmpQuery = "SELECT  * FROM ".self::TABLENAME." WHERE ".$mySQLi->real_escape_string($Criteria);
        if ($sort != ''){ $tmpQuery .= " "."ORDER BY ".$sort; }
