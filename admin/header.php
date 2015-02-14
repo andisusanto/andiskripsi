@@ -1,8 +1,5 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['CurrentAdminId'])){
-        header('location:login.php');
-    }
+    include('checklogin.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">

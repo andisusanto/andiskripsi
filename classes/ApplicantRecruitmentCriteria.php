@@ -68,7 +68,7 @@ class ApplicantRecruitmentCriteria extends BaseObject{
        }
    }
    public static function LoadCollection($mySQLi, $Criteria = '1 = 1',$sort='',$page=0,$totalitem=0){
-       $tmpQuery = "SELECT  * FROM ".self::TABLENAME." WHERE ".$mySQLi->real_escape_string($Criteria);
+       $tmpQuery = "SELECT  * FROM ".self::TABLENAME." WHERE ".$Criteria;
        if ($sort != ''){ $tmpQuery .= " "."ORDER BY ".$sort; }
        if ($page > 0 && $totalitem > 0){
            $start = ($page-1) * $totalitem;

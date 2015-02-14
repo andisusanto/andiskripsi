@@ -1,8 +1,11 @@
 <?php
     include_once('../classes/Recruitment.php');
+    include_once('../classes/Applicant.php');
+    include_once('../classes/ApplicantRecruitment.php');
+    include_once('../classes/ApplicantRecruitmentCriteria.php');
     include_once('../classes/Connection.php');
     $Conn = Connection::get_DefaultConnection();
-    $Recruitment = Recruitment::GetObjectByKey($Conn, $_POST['Id']);
+    $Recruitment = Recruitment::GetObjectByKey($Conn, $_GET['Id']);
     $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
     $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
     
@@ -12,14 +15,18 @@
         foreach($ApplicantRecruitments as $ApplicantRecruitmentA)
         {
             $preferenceDegree = array();
-            $ApplicantRecruitmentCriteriaA = ApplicantRecruitmentCriteria::LoadCollection($Conn,"Applicant = '{$ApplicantRecruitmentA->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'")[0];
+            $ApplicantRecruitmentCriteriaA = ApplicantRecruitmentCriteria::GetObjectByCriteria($Conn,"ApplicantRecruitment = '{$ApplicantRecruitmentA->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'");
             $RecruitmentSubcriteriaA = RecruitmentSubcriteria::GetObjectByKey($Conn, $ApplicantRecruitmentCriteriaA->RecruitmentSubcriteria);
             foreach($ApplicantRecruitments as $ApplicantRecruitmentB)
             {
-                if($ApplicantRecruitmentA==$ApplicantRecruitmentB) break;
-                $ApplicantRecruitmentCriteriaB = ApplicantRecruitmentCriteria::LoadCollection($Conn,"Applicant = '{$ApplicantRecruitmentB->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'")[0];
+                if($ApplicantRecruitmentA==$ApplicantRecruitmentB) 
+                {
+                    $preferenceDegree[] = 0;
+                    break;
+                }
+                $ApplicantRecruitmentCriteriaB = ApplicantRecruitmentCriteria::GetObjectByCriteria($Conn,"ApplicantRecruitment = '{$ApplicantRecruitmentB->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'");
                 $RecruitmentSubcriteriaB = RecruitmentSubcriteria::GetObjectByKey($Conn, $ApplicantRecruitmentCriteriaB->RecruitmentSubcriteria);
-                $A_B = $RecruitmentSubcriteriaA - $RecruitmentSubcriteriaB;
+                $A_B = $RecruitmentSubcriteriaA->Value - $RecruitmentSubcriteriaB->Value;
                 if ($A_B <= $RecruitmentCriteria->IndifferenceThreshold)
                 {
                     $preferenceDegree[] = 0;
@@ -36,7 +43,8 @@
                     }
                 }
             }
-            $criterias[] = $preferenceDegree;
+            $criterias[$RecruitmentCriteria->Name] = $preferenceDegree;
         }
     }
+    echo var_dump($criterias);
 ?>

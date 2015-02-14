@@ -11,6 +11,7 @@
                     <section class="row-fluid">
 
                         <form name="frmEditRecruitment" method="POST" action="processlogin.php">
+                        <input name="returnUrl" type="hidden" value="<?php echo isset($_GET['returnUrl']) ? $_GET['returnUrl'] : ''; ?>" />
                             <div class="input-group">
                                 <label class="control-label required">Username</label>
                                 <input type="text" name="txtUserName" class="form-control" placeholder="Username" aria-describedby="basic-addon1" />

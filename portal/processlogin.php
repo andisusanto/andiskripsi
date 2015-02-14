@@ -10,7 +10,8 @@
         {
             session_start();
             $_SESSION['CurrentApplicantId'] = $applicant->get_Id();
-            header('location:index.php');
+            $location = isset($_POST['returnUrl']) && $_POST['returnUrl'] != '' ? $_POST['returnUrl'] : "index.php";
+            header('location:'.$location);
         }
         else
         {
