@@ -8,10 +8,13 @@
     $Recruitment = Recruitment::GetObjectByKey($Conn, $_GET['Id']);
     $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
     $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
-    
+    ?>
+    <h2><?php echo $Recruitment->Name; ?></h2>
+    <?php
     $criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
     {
+        $applicantPreferenceDegree = array();
         foreach($ApplicantRecruitments as $ApplicantRecruitmentA)
         {
             $preferenceDegree = array();
@@ -19,10 +22,10 @@
             $RecruitmentSubcriteriaA = RecruitmentSubcriteria::GetObjectByKey($Conn, $ApplicantRecruitmentCriteriaA->RecruitmentSubcriteria);
             foreach($ApplicantRecruitments as $ApplicantRecruitmentB)
             {
-                if($ApplicantRecruitmentA==$ApplicantRecruitmentB) 
+                if($ApplicantRecruitmentA->get_Id()==$ApplicantRecruitmentB->get_Id()) 
                 {
                     $preferenceDegree[] = 0;
-                    break;
+                    continue;
                 }
                 $ApplicantRecruitmentCriteriaB = ApplicantRecruitmentCriteria::GetObjectByCriteria($Conn,"ApplicantRecruitment = '{$ApplicantRecruitmentB->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'");
                 $RecruitmentSubcriteriaB = RecruitmentSubcriteria::GetObjectByKey($Conn, $ApplicantRecruitmentCriteriaB->RecruitmentSubcriteria);
@@ -43,8 +46,46 @@
                     }
                 }
             }
-            $criterias[$RecruitmentCriteria->Name] = $preferenceDegree;
+            $applicantPreferenceDegree[] = $preferenceDegree;
         }
+        $criterias[$RecruitmentCriteria->Name] = $applicantPreferenceDegree;
     }
-    echo var_dump($criterias);
+    foreach($criterias as $key => $criteria)
+    {
+    ?>
+        <table>
+            <thead>
+                <th><?php echo $key; ?></th>
+                <?php
+                foreach($ApplicantRecruitments as $ApplicantRecruitment)
+                {
+                ?>
+                    <th><?php $Applicant = Applicant::GetObjectByKey($Conn, $ApplicantRecruitment->Applicant); echo $Applicant->Name; ?></th>
+                <?php
+                }
+                ?>
+            </thead>
+            <tbody>
+                <?php
+                for($i=0;$i<count($ApplicantRecruitments);$i++)
+                {
+                ?>
+                    <tr>
+                        <td><?php $Applicant = Applicant::GetObjectByKey($Conn, $ApplicantRecruitments[$i]->Applicant); echo $Applicant->Name; ?></td>
+                        <?php
+                        for($j=0;$j<count($ApplicantRecruitments);$j++)
+                        {
+                        ?>
+                            <td><?php echo $criteria[$i][$j]; ?></td>
+                        <?php
+                        }
+                        ?>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    <?php
+    }
 ?>
