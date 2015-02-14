@@ -1,4 +1,7 @@
 <?php
+    include('checklogin.php');
+?>
+<?php
 include_once('../classes/Admin.php');
 include_once('../classes/Connection.php');
 $Conn = Connection::get_DefaultConnection();
