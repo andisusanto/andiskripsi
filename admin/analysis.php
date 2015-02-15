@@ -86,6 +86,7 @@
             <thead>
                 <th style="width:25%"><?php echo $RecruitmentCriterias[$h]->Name; ?> (weight = <?php echo $RecruitmentCriterias[$h]->Weight; ?>)</th>
                 <?php
+                $ApplicantRecruitmentCalculation = array();
                 foreach($ApplicantRecruitments as $ApplicantRecruitment)
                 {
                 ?>
@@ -116,9 +117,10 @@
                         <?php
                         }
                         ?>
-                        <td><?php echo $positiveFlow / (count($ApplicantRecruitments) - 1) ?></td>
-                        <td><?php echo $negativeFlow / (count($ApplicantRecruitments) - 1) ?></td>
-                        <td><?php echo ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1) ?></td>
+                        <td><?php $positiveFlow = $positiveFlow / (count($ApplicantRecruitments) - 1); echo $positiveFlow; ?></td>
+                        <td><?php $negativeFlow = $negativeFlow / (count($ApplicantRecruitments) - 1); echo $negativeFlow; ?></td>
+                        <td><?php $netFlow = ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1); echo $netFlow; ?></td>
+                        <?php $Flows = array(); $Flows['positiveFlow'] = $positiveFlow;  $Flows['negativeFlow'] = $negativeFlow;  $Flows['netFlow'] = $netFlow; $ApplicantRecruitmentCalculation[] = $Flows; ?>
                     </tr>
                 <?php
                 }
@@ -129,3 +131,103 @@
     }
 ?>
 </div>
+
+<h3>Global Flows</h3>
+<table>
+    <thead>
+        <tr>
+            <th rowspan="3">Applicant</th>
+            <th colspan="<?php echo count($RecruitmentCriterias) * 2; ?>">Criterias</th>
+            <th rowspan="3">Global Netflow</th>
+        </tr>
+        <tr>
+        <?php
+            for($i=0;$i<count($RecruitmentCriterias);$i++)
+            {
+            ?>
+                <th colspan="2"><?php echo $RecruitmentCriterias[$i]->Name ?> (w= <?php echo $RecruitmentCriterias[$i]->Weight; ?>)</th>
+            <?php
+            }
+        ?>
+        </tr>
+        <tr>
+            <?php
+                for($i=0;$i<count($RecruitmentCriterias);$i++)
+                {
+                ?>
+                    <th>Netflow</th>
+                    <th>Netflow * Weight</th>
+                <?php
+                }
+            ?>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+        $ApplicantRecruitmentGlobalFlows = array();
+        for($i=0;$i<count($ApplicantRecruitments);$i++)
+        {
+        ?>
+        <tr>
+            <td><?php $Applicant = Applicant::GetObjectByKey($Conn, $ApplicantRecruitments[$i]->Applicant); echo $Applicant->Name; ?></td>
+        <?php
+            $globalFlow = 0;
+            for($j=0;$j<count($RecruitmentCriterias);$j++)
+            {
+            ?>
+                <td><?php echo $ApplicantRecruitmentCalculation[$i]['netFlow'] ?></td>
+                <td><?php $tmpGlobalFlow = $ApplicantRecruitmentCalculation[$i]['netFlow'] * $RecruitmentCriterias[$j]->Weight;  echo $tmpGlobalFlow; $globalFlow+=$tmpGlobalFlow; ?></td>
+            <?php
+            }
+            ?>
+            <td><?php echo $globalFlow; ?></td>
+        </tr>
+        <?
+        $ApplicantRecruitmentGlobalFlows[] = array('GlobalFlow'=>$globalFlow,'ApplicantName'=>$Applicant->Name);
+        }
+    ?>
+    </tbody>
+</table>
+<?php
+    $sorted = array();
+    $sorted[0] = $ApplicantRecruitmentGlobalFlows[0];
+    for($i=1;$i<count($ApplicantRecruitmentGlobalFlows);$i++)
+    {
+        for($j=$i-1;$j>=0;$j--)
+        {
+            if($sorted[$j]['GlobalFlow'] >= $ApplicantRecruitmentGlobalFlows[$i]['GlobalFlow'])
+            {
+                $sorted[$j+1] = $ApplicantRecruitmentGlobalFlows[$i];
+                break;
+            }
+            else
+            {
+                $sorted[$j+1] = $sorted[$j];
+            }
+            if($j==0)
+                $sorted[0] = $ApplicantRecruitmentGlobalFlows[$i];
+        }
+    }
+?>
+<h3>Ranking</h3>
+<table>
+    <thead>
+        <th>Applicant</th>
+        <th>Global Netflow</th>
+        <th>Ranking</th>
+    </thead>
+    <tbody>
+        <?php
+            for($i=0;$i<count($sorted);$i++)
+            {
+            ?>
+                <tr>
+                    <td><?php echo $sorted[$i]['ApplicantName'] ?></td>
+                    <td><?php echo $sorted[$i]['GlobalFlow'] ?></td>
+                    <td><?php echo $i+1 ?></td>
+                </tr>
+            <?php
+            }
+        ?>
+    </tbody>
+</table>
