@@ -26,8 +26,8 @@ class RecruitmentCriteria extends BaseObject{
    public function get_ApplicantRecruitmentCriteria($page=0,$totalitem=0){
        return ApplicantRecruitmentCriteria::LoadCollection($this->get_mySQLi(),"RecruitmentCriteria = ".$this->Id,'Id DESC',$page,$totalitem);
    }
-   public function get_RecruitmentSubcriteria($page=0,$totalitem=0){
-       return RecruitmentSubcriteria::LoadCollection($this->get_mySQLi(),"RecruitmentCriteria = ".$this->Id,'Id DESC',$page,$totalitem);
+   public function get_RecruitmentSubcriteria($page=0,$totalitem=0,$sort = 'Id DESC'){
+       return RecruitmentSubcriteria::LoadCollection($this->get_mySQLi(),"RecruitmentCriteria = ".$this->Id,$sort,$page,$totalitem);
    }
    public function get_RecruitmentMinimalValueSubcriteria()
    {

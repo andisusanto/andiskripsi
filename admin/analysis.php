@@ -9,11 +9,34 @@
     $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
     $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
     ?>
-    <h2><?php echo $Recruitment->Name; ?></h2>
+    <h1><?php echo $Recruitment->Name; ?></h1>
     <?php
     $criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
     {
+        ?>
+        <h3><?php echo $RecruitmentCriteria->Name; ?> (Weight: <?php echo $RecruitmentCriteria->Weight; ?>)</h3>
+        <?php $RecruitmentSubcriterias = $RecruitmentCriteria->get_RecruitmentSubcriteria(0,0,'Value ASC'); ?>
+        <table>
+            <thead>
+                <th>Description</th>
+                <th>Value</th>
+            </thead>
+            <tbody>
+                <?php
+                foreach($RecruitmentSubcriterias as $RecruitmentSubcriteria)
+                {
+                ?>
+                    <tr>
+                        <td><?php echo $RecruitmentSubcriteria->Description; ?></td>
+                        <td><?php echo $RecruitmentSubcriteria->Value; ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <?php
         $applicantPreferenceDegree = array();
         foreach($ApplicantRecruitments as $ApplicantRecruitmentA)
         {
@@ -48,14 +71,18 @@
             }
             $applicantPreferenceDegree[] = $preferenceDegree;
         }
-        $criterias[$RecruitmentCriteria->Name] = $applicantPreferenceDegree;
+        $criterias[] = $applicantPreferenceDegree;
     }
-    foreach($criterias as $key => $criteria)
+    ?>
+        <h2>CALCULATION</h2>
+    <?php
+    for($h=0;$h<count($RecruitmentCriterias);$h++)
     {
+        $criteria = $criterias[$h];
     ?>
         <table>
             <thead>
-                <th><?php echo $key; ?></th>
+                <th><?php echo $RecruitmentCriterias[$h]->Name; ?> (weight = <?php echo $RecruitmentCriterias[$h]->Weight; ?>)</th>
                 <?php
                 foreach($ApplicantRecruitments as $ApplicantRecruitment)
                 {
@@ -64,6 +91,9 @@
                 <?php
                 }
                 ?>
+                <th>Positive Flow</th>
+                <th>Negative Flow</th>
+                <th>Net Flow</th>
             </thead>
             <tbody>
                 <?php
@@ -73,13 +103,20 @@
                     <tr>
                         <td><?php $Applicant = Applicant::GetObjectByKey($Conn, $ApplicantRecruitments[$i]->Applicant); echo $Applicant->Name; ?></td>
                         <?php
+                        $positiveFlow = 0;
+                        $negativeFlow = 0;
                         for($j=0;$j<count($ApplicantRecruitments);$j++)
                         {
+                            $positiveFlow += $criteria[$i][$j];
+                            $negativeFlow += $criteria[$j][$i];
                         ?>
                             <td><?php echo $criteria[$i][$j]; ?></td>
                         <?php
                         }
                         ?>
+                        <td><?php echo $positiveFlow / (count($ApplicantRecruitments) - 1) ?></td>
+                        <td><?php echo $negativeFlow / (count($ApplicantRecruitments) - 1) ?></td>
+                        <td><?php echo ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1) ?></td>
                     </tr>
                 <?php
                 }
