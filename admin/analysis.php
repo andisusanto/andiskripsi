@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/custom.css">
+<div class="analysis">
 <?php
     include_once('../classes/Recruitment.php');
     include_once('../classes/Applicant.php');
@@ -19,8 +21,8 @@
         <?php $RecruitmentSubcriterias = $RecruitmentCriteria->get_RecruitmentSubcriteria(0,0,'Value ASC'); ?>
         <table>
             <thead>
-                <th>Description</th>
-                <th>Value</th>
+                <th style="width:70%">Description</th>
+                <th style="width:30%">Value</th>
             </thead>
             <tbody>
                 <?php
@@ -82,7 +84,7 @@
     ?>
         <table>
             <thead>
-                <th><?php echo $RecruitmentCriterias[$h]->Name; ?> (weight = <?php echo $RecruitmentCriterias[$h]->Weight; ?>)</th>
+                <th style="width:25%"><?php echo $RecruitmentCriterias[$h]->Name; ?> (weight = <?php echo $RecruitmentCriterias[$h]->Weight; ?>)</th>
                 <?php
                 foreach($ApplicantRecruitments as $ApplicantRecruitment)
                 {
@@ -91,9 +93,9 @@
                 <?php
                 }
                 ?>
-                <th>Positive Flow</th>
-                <th>Negative Flow</th>
-                <th>Net Flow</th>
+                <th style="width:10%">Positive Flow</th>
+                <th style="width:10%">Negative Flow</th>
+                <th style="width:10%">Net Flow</th>
             </thead>
             <tbody>
                 <?php
@@ -126,3 +128,4 @@
     <?php
     }
 ?>
+</div>

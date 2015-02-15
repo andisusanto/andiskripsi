@@ -1,0 +1,17 @@
+.analysis {font-family: Tahoma; width: 95%; margin: 0px auto;}
+.analysis table {
+	width:100%;
+	border: 1px solid #000;
+	margin-top: 10px;
+}
+
+.analysis thead {
+	color: #FFF;
+	background: #000;
+	text-align: left;
+}
+
+.analysis td, .analysis th{
+	padding: 4px 5px;
+	border: 1px solid #000
+}
