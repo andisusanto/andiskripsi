@@ -130,7 +130,6 @@
     <?php
     }
 ?>
-</div>
 
 <h3>Global Flows</h3>
 <table>
@@ -231,3 +230,4 @@
         ?>
     </tbody>
 </table>
+</div>
