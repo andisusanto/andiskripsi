@@ -113,13 +113,13 @@
                             $positiveFlow += $criteria[$i][$j];
                             $negativeFlow += $criteria[$j][$i];
                         ?>
-                            <td><?php echo $criteria[$i][$j]; ?></td>
+                            <td><?php echo round($criteria[$i][$j],3); ?></td>
                         <?php
                         }
                         ?>
-                        <td><?php $positiveFlow = $positiveFlow / (count($ApplicantRecruitments) - 1); echo $positiveFlow; ?></td>
-                        <td><?php $negativeFlow = $negativeFlow / (count($ApplicantRecruitments) - 1); echo $negativeFlow; ?></td>
-                        <td><?php $netFlow = ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1); echo $netFlow; ?></td>
+                        <td><?php $positiveFlow = $positiveFlow / (count($ApplicantRecruitments) - 1); echo round($positiveFlow,3); ?></td>
+                        <td><?php $negativeFlow = $negativeFlow / (count($ApplicantRecruitments) - 1); echo round($negativeFlow,3); ?></td>
+                        <td><?php $netFlow = ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1); echo round($netFlow,3); ?></td>
                         <?php $Flows = array(); $Flows['positiveFlow'] = $positiveFlow;  $Flows['negativeFlow'] = $negativeFlow;  $Flows['netFlow'] = $netFlow; $ApplicantRecruitmentCalculation[] = $Flows; ?>
                     </tr>
                 <?php
@@ -174,12 +174,12 @@
             for($j=0;$j<count($RecruitmentCriterias);$j++)
             {
             ?>
-                <td><?php echo $ApplicantRecruitmentCalculation[$i]['netFlow'] ?></td>
-                <td><?php $tmpGlobalFlow = $ApplicantRecruitmentCalculation[$i]['netFlow'] * $RecruitmentCriterias[$j]->Weight;  echo $tmpGlobalFlow; $globalFlow+=$tmpGlobalFlow; ?></td>
+                <td><?php echo round($ApplicantRecruitmentCalculation[$i]['netFlow'],3) ?></td>
+                <td><?php $tmpGlobalFlow = $ApplicantRecruitmentCalculation[$i]['netFlow'] * $RecruitmentCriterias[$j]->Weight;  echo round($tmpGlobalFlow,3); $globalFlow+=$tmpGlobalFlow; ?></td>
             <?php
             }
             ?>
-            <td><?php echo $globalFlow; ?></td>
+            <td><?php echo round($globalFlow,3); ?></td>
         </tr>
         <?
         $ApplicantRecruitmentGlobalFlows[] = array('GlobalFlow'=>$globalFlow,'ApplicantName'=>$Applicant->Name);
@@ -222,7 +222,7 @@
             ?>
                 <tr>
                     <td><?php echo $sorted[$i]['ApplicantName'] ?></td>
-                    <td><?php echo $sorted[$i]['GlobalFlow'] ?></td>
+                    <td><?php echo round($sorted[$i]['GlobalFlow'],3) ?></td>
                     <td><?php echo $i+1 ?></td>
                 </tr>
             <?php

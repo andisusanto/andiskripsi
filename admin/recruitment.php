@@ -74,7 +74,7 @@
                         
                         <div class="input-group">
                             <label class="control-label required">Description <span class="required">*</span></label>
-                            <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                            <textarea name="Description" id="wysiwg_editor" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
                         </div>
                         
                         <div class="input-group">
@@ -99,3 +99,5 @@
             <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
             <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
             <script src="js/beoro_datatables.js"></script>
+            <script src="js/lib/ckeditor/ckeditor.js"></script>
+            <script src="js/wysiwg.js"></script>

@@ -1,6 +1,6 @@
 <?php
     include("header.php");
-    $_SESSION['returnUrl'] = $_GET['returnUrl'];
+    //if (isset($_GET['returnUrl'])) $_SESSION['returnUrl'] = $_GET['returnUrl'];
 ?>
    
 <div id="latest-job">

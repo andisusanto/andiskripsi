@@ -28,7 +28,7 @@
                 
                 <div class="input-group">
                     <label class="control-label required">Description <span class="required">*</span></label>
-                    <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
+                    <textarea name="Description" id="wysiwg_editor" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
                 </div>
 
                 <div class="input-group">
@@ -115,17 +115,52 @@
 
                         <div class="input-group">
                             <label class="control-label required">Weight <span class="required">*</span></label>
-                            <input type="text" name="Weight" class="form-control" placeholder="Weight" aria-describedby="basic-addon2" />
+                            <select name="Weight" class="form-control" placeholder="Weight" aria-describedby="basic-addon2">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
 
                         <div class="input-group">
                             <label class="control-label required">Indifference Threshold <span class="required">*</span></label>
-                            <input type="text" name="IndifferenceThreshold" class="form-control" placeholder="IndifferenceThreshold" aria-describedby="basic-addon2" />
+                            <select name="IndifferenceThreshold" class="form-control" placeholder="IndifferenceThreshold" aria-describedby="basic-addon2">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
 
                         <div class="input-group">
                             <label class="control-label required">Preference Threshold <span class="required">*</span></label>
-                            <input type="text" name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2" />
+                            <select name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
                     </form>
                   </div>
@@ -145,3 +180,5 @@
             <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
             <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
             <script src="js/beoro_datatables.js"></script>
+            <script src="js/lib/ckeditor/ckeditor.js"></script>
+            <script src="js/wysiwg.js"></script>

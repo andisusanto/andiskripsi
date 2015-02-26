@@ -32,10 +32,9 @@
                                 <?php
                                     foreach($RecruitmentCriterias as $RecruitmentCriteria)
                                     {
-                                        $MinimalValueSubcriteria = $RecruitmentCriteria->get_RecruitmentMinimalValueSubcriteria();
                                     ?>
                                         <li>
-                                        - <?php echo $RecruitmentCriteria->Name; ?>, min: <?php echo $MinimalValueSubcriteria->Description; ?>
+                                        - <?php echo $RecruitmentCriteria->Name; ?>
                                         </li>
                                     <?php
                                     }

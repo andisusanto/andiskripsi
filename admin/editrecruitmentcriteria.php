@@ -30,17 +30,52 @@
 
                 <div class="input-group">
                     <label class="control-label">Weight</label>
-                    <input type="text" name="Weight" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->Weight; ?>"/>
+                    <select name="Weight" class="form-control" placeholder="Weight" aria-describedby="basic-addon2">
+                        <option value="1" <?php if($RecruitmentCriteria->Weight == 1) echo "selected"; ?>>1</option>
+                        <option value="2" <?php if($RecruitmentCriteria->Weight == 2) echo "selected"; ?>>2</option>
+                        <option value="3" <?php if($RecruitmentCriteria->Weight == 3) echo "selected"; ?>>3</option>
+                        <option value="4" <?php if($RecruitmentCriteria->Weight == 4) echo "selected"; ?>>4</option>
+                        <option value="5" <?php if($RecruitmentCriteria->Weight == 5) echo "selected"; ?>>5</option>
+                        <option value="6" <?php if($RecruitmentCriteria->Weight == 6) echo "selected"; ?>>6</option>
+                        <option value="7" <?php if($RecruitmentCriteria->Weight == 7) echo "selected"; ?>>7</option>
+                        <option value="8" <?php if($RecruitmentCriteria->Weight == 8) echo "selected"; ?>>8</option>
+                        <option value="9" <?php if($RecruitmentCriteria->Weight == 9) echo "selected"; ?>>9</option>
+                        <option value="10" <?php if($RecruitmentCriteria->Weight == 10) echo "selected"; ?>>10</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
                     <label class="control-label">Indifference Threshold</label>
-                    <input type="text" name="IndifferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->IndifferenceThreshold; ?>"/>
+                    <select name="IndifferenceThreshold" class="form-control" placeholder="IndifferenceThreshold" aria-describedby="basic-addon2">
+                        <option value="0" <?php if($RecruitmentCriteria->IndifferenceThreshold == 0) echo "selected"; ?>>0</option>
+                        <option value="1" <?php if($RecruitmentCriteria->IndifferenceThreshold == 1) echo "selected"; ?>>1</option>
+                        <option value="2" <?php if($RecruitmentCriteria->IndifferenceThreshold == 2) echo "selected"; ?>>2</option>
+                        <option value="3" <?php if($RecruitmentCriteria->IndifferenceThreshold == 3) echo "selected"; ?>>3</option>
+                        <option value="4" <?php if($RecruitmentCriteria->IndifferenceThreshold == 4) echo "selected"; ?>>4</option>
+                        <option value="5" <?php if($RecruitmentCriteria->IndifferenceThreshold == 5) echo "selected"; ?>>5</option>
+                        <option value="6" <?php if($RecruitmentCriteria->IndifferenceThreshold == 6) echo "selected"; ?>>6</option>
+                        <option value="7" <?php if($RecruitmentCriteria->IndifferenceThreshold == 7) echo "selected"; ?>>7</option>
+                        <option value="8" <?php if($RecruitmentCriteria->IndifferenceThreshold == 8) echo "selected"; ?>>8</option>
+                        <option value="9" <?php if($RecruitmentCriteria->IndifferenceThreshold == 9) echo "selected"; ?>>9</option>
+                        <option value="10" <?php if($RecruitmentCriteria->IndifferenceThreshold == 10) echo "selected"; ?>>10</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
                     <label class="control-label">Preference Threshold</label>
-                    <input type="text" name="PreferenceThreshold" class="form-control" aria-describedby="basic-addon2" value="<?php echo $RecruitmentCriteria->PreferenceThreshold; ?>"/>
+                    <select name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2">
+                        <option value="0" <?php if($RecruitmentCriteria->PreferenceThreshold == 0) echo "selected"; ?>>0</option>
+                        <option value="1" <?php if($RecruitmentCriteria->PreferenceThreshold == 1) echo "selected"; ?>>1</option>
+                        <option value="2" <?php if($RecruitmentCriteria->PreferenceThreshold == 2) echo "selected"; ?>>2</option>
+                        <option value="3" <?php if($RecruitmentCriteria->PreferenceThreshold == 3) echo "selected"; ?>>3</option>
+                        <option value="4" <?php if($RecruitmentCriteria->PreferenceThreshold == 4) echo "selected"; ?>>4</option>
+                        <option value="5" <?php if($RecruitmentCriteria->PreferenceThreshold == 5) echo "selected"; ?>>5</option>
+                        <option value="6" <?php if($RecruitmentCriteria->PreferenceThreshold == 6) echo "selected"; ?>>6</option>
+                        <option value="7" <?php if($RecruitmentCriteria->PreferenceThreshold == 7) echo "selected"; ?>>7</option>
+                        <option value="8" <?php if($RecruitmentCriteria->PreferenceThreshold == 8) echo "selected"; ?>>8</option>
+                        <option value="9" <?php if($RecruitmentCriteria->PreferenceThreshold == 9) echo "selected"; ?>>9</option>
+                        <option value="10" <?php if($RecruitmentCriteria->PreferenceThreshold == 10) echo "selected"; ?>>10</option>
+                    </select>
                 </div>
                 <a href="editrecruitment.php?Id=<?php echo $RecruitmentCriteria->Recruitment; ?>"><button type="button" class="btn btn-default">Cancel</button></a>
                 <button type="submit" class="btn btn-primary">Save changes</button>
@@ -94,7 +129,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">New RecruitmentCriteria</h4>
+                    <h4 class="modal-title" id="myModalLabel">New Recruitment Subcriteria</h4>
                   </div>
                   <div class="modal-body">
                     <form name="frmNewRecruitmentCriteria" id="frmNewRecruitmentCriteria" method="POST" action="processnewrecruitmentsubcriteria.php">
@@ -106,7 +141,19 @@
 
                         <div class="input-group">
                             <label class="control-label required">Value <span class="required">*</span></label>
-                            <input type="text" name="Value" class="form-control" placeholder="Value" aria-describedby="basic-addon2" />
+                            <select name="Value" class="form-control" placeholder="Value" aria-describedby="basic-addon2">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
                     </form>
                   </div>
