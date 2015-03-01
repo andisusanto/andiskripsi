@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.combosex.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.flexslider.css"/>
 <link rel="stylesheet" type="text/css" href="css/jquery.scrollbar.css"/>
+<link rel="stylesheet" type="text/css" href="css/my.css"/>
 
 <!--[if (lte IE 9)]>
     <link rel="stylesheet" type="text/css" href="css/iefix.css"/>
@@ -45,8 +46,12 @@
       <?php
         if (isset($_SESSION['CurrentApplicantId']))
         {
+            include_once('../classes/Applicant.php');
+            include_once('../classes/Connection.php');
+            $Conn = Connection::get_DefaultConnection();
+            $Applicant = Applicant::GetObjectByKey($Conn,$_SESSION['CurrentApplicantId']);
         ?>
-            <li id="logout" class="first"><a href="processlogout.php">Log out</a></li>
+            <li id="logout" class="first"><a href="processlogout.php">(<?php echo $Applicant->Name; ?>) Log out</a></li>
         <?php
         }
         else
@@ -72,19 +77,6 @@
     <div id="logo"> <a href="index.php"><img src="images/Logo.png" width="205" height="50"  alt="logo"/></a><a class="menu-hider"></a></div>
     <!-- /Logo -->
     
-    <div class="reponsive-nav">
-   <select  class="select" name="menu1" id="menu1"> 
-       <option value="index.html">Home</option>
-      <option value="jobs.html">Job listing</option>
-      <option value="job.html">Job Details</option>
-      <option value="candidates-listing.html">Candidate Listing (with sidebar)</option>
-      <option value="candidates-listing-no-sidebar.html">Candidate listing (without sidebar)</option>
-      <option value="candidate.html">Candidate Details</option>
-      <option value="partners.html">Partners</option>
-      <option value="about-us.html">About Us</option>
-      <option value="contacts.html">Contact</option>
-    </select>
-    </div>
   </div>
 </div>
 <!-- /Header --> 

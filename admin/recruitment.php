@@ -64,22 +64,22 @@
                     <form name="frmNewRecruitment" id="frmNewRecruitment" method="POST" action="processnewrecruitment.php">
                         <div class="input-group">
                             <label class="control-label required">Name <span class="required">*</span></label>
-                            <input type="text" name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon2" />
+                            <input type="text" name="Name" class="form-control validate[required]" placeholder="Name" aria-describedby="basic-addon2" />
                         </div>
                         
                         <div class="input-group">
                             <label class="control-label required">TransDate <span class="required">*</span></label>
-                            <input type="text" name="TransDate" class="form-control" placeholder="TransDate" aria-describedby="basic-addon2" />
+                            <input type="text" name="TransDate" class="form-control validate[required]" placeholder="TransDate" aria-describedby="basic-addon2" />
                         </div>
                         
                         <div class="input-group">
                             <label class="control-label required">Description <span class="required">*</span></label>
-                            <textarea name="Description" id="wysiwg_editor" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                            <textarea name="Description" id="wysiwg_editor" class="form-control validate[required]" placeholder="Description" aria-describedby="basic-addon1"></textarea>
                         </div>
                         
                         <div class="input-group">
                             <label class="control-label required">Estimation Close Date <span class="required">*</span></label>
-                            <input type="text" name="EstimationCloseDate" class="form-control" placeholder="EstimationCloseDate" aria-describedby="basic-addon2" />
+                            <input type="text" name="EstimationCloseDate" class="form-control validate[required]" placeholder="EstimationCloseDate" aria-describedby="basic-addon2" />
                         </div>
                     </form>
                   </div>
@@ -101,3 +101,8 @@
             <script src="js/beoro_datatables.js"></script>
             <script src="js/lib/ckeditor/ckeditor.js"></script>
             <script src="js/wysiwg.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#frmNewRecruitment").validationEngine();
+                });
+            </script>

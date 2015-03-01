@@ -14,26 +14,26 @@
 <div class="w-box-content cnt_a">
     <div class="row-fluid">
         <div class="span6">
-            <form name="frmEditRecruitment" method="POST" action="processeditrecruitment.php">
+            <form name="frmEditRecruitment" id="frmEditRecruitment" method="POST" action="processeditrecruitment.php">
                 <input type="hidden" name="Id" value="<?php echo $Recruitment->get_Id(); ?>" />
                 <div class="input-group">
                     <label class="control-label required">Name <span class="required">*</span></label>
-                    <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"><?php echo $Recruitment->Name; ?></textarea>
+                    <textarea name="Name" class="form-control validate[required]" placeholder="Name" aria-describedby="basic-addon1"><?php echo $Recruitment->Name; ?></textarea>
                 </div>
 
                 <div class="input-group">
                     <label class="control-label">TransDate</label>
-                    <input type="text" name="TransDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->TransDate); ?>"/>
+                    <input type="text" name="TransDate" class="form-control validate[required]" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->TransDate); ?>"/>
                 </div>
                 
                 <div class="input-group">
                     <label class="control-label required">Description <span class="required">*</span></label>
-                    <textarea name="Description" id="wysiwg_editor" class="form-control" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
+                    <textarea name="Description" id="wysiwg_editor" class="form-control validate[required]" placeholder="Description" aria-describedby="basic-addon1"><?php echo $Recruitment->Description; ?></textarea>
                 </div>
 
                 <div class="input-group">
                     <label class="control-label">Estimation Close Date</label>
-                    <input type="text" name="EstimationCloseDate" class="form-control" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->EstimationCloseDate); ?>"/>
+                    <input type="text" name="EstimationCloseDate" class="form-control validate[required]" aria-describedby="basic-addon2" value="<?php echo date('Y-m-d',$Recruitment->EstimationCloseDate); ?>"/>
                 </div>
 
                 <div class="input-group">
@@ -103,14 +103,14 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">New Recruitment</h4>
+                    <h4 class="modal-title" id="myModalLabel">New Recruitment Criteria</h4>
                   </div>
                   <div class="modal-body">
-                    <form name="frmNewRecruitment" id="frmNewRecruitment" method="POST" action="processnewrecruitmentcriteria.php">
+                    <form name="frmNewRecruitmentCriteria" id="frmNewRecruitmentCriteria" method="POST" action="processnewrecruitmentcriteria.php">
                         <input type="hidden" name="Recruitment" value="<?php echo $Recruitment->get_Id(); ?>" />
                         <div class="input-group">
                             <label class="control-label required">Description <span class="required">*</span></label>
-                            <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"></textarea>
+                            <textarea name="Name" class="form-control validate[required]" placeholder="Name" aria-describedby="basic-addon1"></textarea>
                         </div>
 
                         <div class="input-group">
@@ -166,7 +166,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitment').submit();">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitmentCriteria').submit();">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -182,3 +182,9 @@
             <script src="js/beoro_datatables.js"></script>
             <script src="js/lib/ckeditor/ckeditor.js"></script>
             <script src="js/wysiwg.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#frmNewRecruitmentCriteria").validationEngine();
+                    $("#frmEditRecruitment").validationEngine();
+                });
+            </script>

@@ -12,11 +12,11 @@
 <div class="w-box-content cnt_a">
     <div class="row-fluid">
         <div class="span6">
-            <form name="frmEditAdmin" method="POST" action="processeditadmin.php">
+            <form name="frmEditAdmin" id="frmEditAdmin" method="POST" action="processeditadmin.php">
                 <input type="hidden" name="Id" value="<?php echo $Admin->get_Id(); ?>" />
                 <div class="input-group">
                     <label class="control-label required">UserName <span class="required">*</span></label>
-                    <input type="text" name="UserName" class="form-control" placeholder="UserName" value="<?php echo $Admin->UserName; ?>" aria-describedby="basic-addon1" />
+                    <input type="text" name="UserName" class="form-control validate[required]" placeholder="UserName" value="<?php echo $Admin->UserName; ?>" aria-describedby="basic-addon1" />
                 </div>
 
                 <div class="input-group">
@@ -30,3 +30,8 @@
     </div>
 </div>
 <?php include('footer.php'); ?>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#frmEditAdmin").validationEngine();
+                });
+            </script>

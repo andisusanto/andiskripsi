@@ -57,6 +57,8 @@
             <script src="js/lib/wookmark/jquery.wookmark.min.js"></script>
 
             <script src="js/pages/beoro_dashboard.js"></script>
+            <script src="js/formValidation/js/jquery.validationEngine.js" type="text/javascript"></script>
+            <script src="js/formValidation/js/languages/jquery.validationEngine-en.js" type="text/javascript"></script>
 
     </body>
 </html>

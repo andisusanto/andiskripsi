@@ -17,6 +17,7 @@
                             <div class="company-text">
                                 <h4>Information</h4>
                                 <div class="description">Posted Date : <?php echo date('d-M-Y',$Recruitment->TransDate); ?></div>
+                                <div class="description">Estimation Close Date : <?php echo date('d-M-Y',$Recruitment->EstimationCloseDate); ?></div>
                             </div>
                             
                             <div class="company-text">

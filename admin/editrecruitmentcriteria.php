@@ -17,7 +17,7 @@
 <div class="w-box-content cnt_a">
     <div class="row-fluid">
         <div class="span6">
-            <form name="frmEditRecruitmentCriteria" method="POST" action="processeditrecruitmentcriteria.php">
+            <form name="frmEditRecruitmentCriteria" id="frmEditRecruitmentCriteria" method="POST" action="processeditrecruitmentcriteria.php">
                 <input type="hidden" name="Id" value="<?php echo $RecruitmentCriteria->get_Id(); ?>" />
                 <div class="input-group">
                     <label class="control-label required">Recruitment</label><?php echo $Recruitment->Name; ?>
@@ -25,7 +25,7 @@
     
                 <div class="input-group">
                     <label class="control-label required">Name</label>
-                    <textarea name="Name" class="form-control" placeholder="Name" aria-describedby="basic-addon1"><?php echo $RecruitmentCriteria->Name; ?></textarea>
+                    <textarea name="Name" class="form-control validate[required]" placeholder="Name" aria-describedby="basic-addon1"><?php echo $RecruitmentCriteria->Name; ?></textarea>
                 </div>
 
                 <div class="input-group">
@@ -132,11 +132,11 @@
                     <h4 class="modal-title" id="myModalLabel">New Recruitment Subcriteria</h4>
                   </div>
                   <div class="modal-body">
-                    <form name="frmNewRecruitmentCriteria" id="frmNewRecruitmentCriteria" method="POST" action="processnewrecruitmentsubcriteria.php">
+                    <form name="frmNewRecruitmentSubcriteria" id="frmNewRecruitmentSubcriteria" method="POST" action="processnewrecruitmentsubcriteria.php">
                         <input type="hidden" name="RecruitmentCriteria" value="<?php echo $RecruitmentCriteria->get_Id(); ?>" />
                         <div class="input-group">
                             <label class="control-label required">Description <span class="required">*</span></label>
-                            <textarea name="Description" class="form-control" placeholder="Description" aria-describedby="basic-addon1"></textarea>
+                            <textarea name="Description" class="form-control validate[required]" placeholder="Description" aria-describedby="basic-addon1"></textarea>
                         </div>
 
                         <div class="input-group">
@@ -159,7 +159,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitmentCriteria').submit();">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="$(this).attr('onclick','');$('#frmNewRecruitmentSubcriteria').submit();">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -173,3 +173,9 @@
             <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
             <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
             <script src="js/beoro_datatables.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#frmEditRecruitmentCriteria").validationEngine();
+                    $("#frmNewRecruitmentSubcriteria").validationEngine();
+                });
+            </script>

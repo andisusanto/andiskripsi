@@ -51,17 +51,17 @@
                     <form name="frmNewAdmin" id="frmNewAdmin" method="POST" action="processnewadmin.php">
                         <div class="input-group">
                             <label class="control-label required">UserName <span class="required">*</span></label>
-                            <input type="text" name="UserName" class="form-control" placeholder="UserName" aria-describedby="basic-addon1" />
+                            <input type="text" name="UserName" class="form-control validate[required]" placeholder="UserName" aria-describedby="basic-addon1" />
                         </div>
 
                         <div class="input-group">
                             <label class="control-label required">Password</label>
-                            <input type="password" name="Password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" />
+                            <input type="password" name="Password" class="form-control validate[required]" id="Password" placeholder="Password" aria-describedby="basic-addon2" />
                         </div>
 
                         <div class="input-group">
                             <label class="control-label required">Confirm Password</label>
-                            <input type="password" name="ConfirmPassword" class="form-control" placeholder="Password" aria-describedby="basic-addon2" />
+                            <input type="password" name="ConfirmPassword" class="form-control validate[required, equals[Password]]" placeholder="Password" aria-describedby="basic-addon2" />
                         </div>
 
                         <div class="input-group">
@@ -86,3 +86,8 @@
             <script src="js/lib/datatables/extras/TableTools/media/js/ZeroClipboard.js"></script>
             <script src="js/lib/datatables/js/jquery.dataTables.bootstrap.min.js"></script>
             <script src="js/beoro_datatables.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#frmNewAdmin").validationEngine();
+                });
+            </script>

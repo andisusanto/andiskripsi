@@ -46,7 +46,9 @@
             <script src="js/ie/respond.min.js"></script>
             <script src="js/lib/flot-charts/excanvas.min.js"></script>
         <![endif]-->
-
+    <!-- formValidation -->
+    
+            <link rel="stylesheet" href="js/formValidation/css/validationEngine.jquery.css">
     </head>
     <body class="bg_d">
     <!-- main wrapper (without footer) -->    
