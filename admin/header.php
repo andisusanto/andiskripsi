@@ -26,7 +26,6 @@
         <!-- google web fonts -->
             <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Abel">
             <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
-
     <!-- aditional stylesheets -->
         <!-- colorbox -->
             <link rel="stylesheet" href="js/lib/colorbox/colorbox.css">

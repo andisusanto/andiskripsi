@@ -15,7 +15,7 @@ try {
 
     $Recruitment->Save();
     $Conn->Commit();
-    header('location:recruitment.php');
+    header('location:editrecruitment.php?Id='.$Recruitment->get_Id());
 } catch (Exception $e) {
     include('error_handler.php');
 }

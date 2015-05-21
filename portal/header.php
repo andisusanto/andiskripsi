@@ -74,7 +74,7 @@
   <div class="inner"> 
     
     <!-- Logo -->
-    <div id="logo"> <a href="index.php"><img src="images/Logo.png" width="205" height="50"  alt="logo"/></a><a class="menu-hider"></a></div>
+    <div id="logo"> <a href="index.php"><img src="images/Logo.png" width="205" height="50"  alt="logo"/></a></div>
     <!-- /Logo -->
     
   </div>

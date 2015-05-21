@@ -69,7 +69,7 @@
                         
                         <div class="input-group">
                             <label class="control-label required">TransDate <span class="required">*</span></label>
-                            <input type="text" name="TransDate" class="form-control validate[required]" placeholder="TransDate" aria-describedby="basic-addon2" />
+                            <input type="date" name="TransDate" />
                         </div>
                         
                         <div class="input-group">
@@ -79,7 +79,7 @@
                         
                         <div class="input-group">
                             <label class="control-label required">Estimation Close Date <span class="required">*</span></label>
-                            <input type="text" name="EstimationCloseDate" class="form-control validate[required]" placeholder="EstimationCloseDate" aria-describedby="basic-addon2" />
+                            <input type="date" name="EstimationCloseDate" class="form-control validate[required]" placeholder="EstimationCloseDate" aria-describedby="basic-addon2" />
                         </div>
                     </form>
                   </div>

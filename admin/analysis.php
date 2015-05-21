@@ -67,7 +67,7 @@
                     }
                     else
                     {
-                        $preferenceDegree[] = $A_B / ($RecruitmentCriteria->PreferenceThreshold - $RecruitmentCriteria->IndifferenceThreshold);
+                        $preferenceDegree[] = ($A_B - $RecruitmentCriteria->IndifferenceThreshold) / ($RecruitmentCriteria->PreferenceThreshold - $RecruitmentCriteria->IndifferenceThreshold);
                     }
                 }
             }

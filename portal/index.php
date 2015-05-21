@@ -17,11 +17,11 @@
                         foreach($Recruitments as $Recruitment)
                         {
                             ?>
-                              <div class="company-text">
+                              <div class="company-text customTile">
                                 <div class="title"><a href="recruitmentdetail.php?Id=<?php echo $Recruitment->get_Id(); ?>"><?php echo $Recruitment->Name; ?></a>
                                   <div class="location">At <?php echo date('Y-m-d', $Recruitment->TransDate); ?></div>
                                 </div>
-                                <div class="description"><?php echo strlen($Recruitment->Description) > 100 ? substr($Recruitment->Description,0,100)."<a href='recruitmentdetail.php?Id=".$Recruitment->get_Id()."'> ...Read More</a>" : $Recruitment->Description; ?></div>
+                                <div class="description"><?php echo $Recruitment->Description; ?></div>
                               </div>
                             <?php
                         }
