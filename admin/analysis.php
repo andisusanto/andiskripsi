@@ -78,6 +78,7 @@
     ?>
         <h2>CALCULATION</h2>
     <?php
+    $RecruitmentCalculation = array();
     for($h=0;$h<count($RecruitmentCriterias);$h++)
     {
         $criteria = $criterias[$h];
@@ -124,13 +125,13 @@
                     </tr>
                 <?php
                 }
+                 $RecruitmentCalculation[] = $ApplicantRecruitmentCalculation;
                 ?>
             </tbody>
         </table>
     <?php
     }
 ?>
-
 <h3>Global Flows</h3>
 <table>
     <thead>
@@ -174,8 +175,8 @@
             for($j=0;$j<count($RecruitmentCriterias);$j++)
             {
             ?>
-                <td><?php echo round($ApplicantRecruitmentCalculation[$i]['netFlow'],3) ?></td>
-                <td><?php $tmpGlobalFlow = $ApplicantRecruitmentCalculation[$i]['netFlow'] * $RecruitmentCriterias[$j]->Weight;  echo round($tmpGlobalFlow,3); $globalFlow+=$tmpGlobalFlow; ?></td>
+                <td><?php echo round($RecruitmentCalculation[$j][$i]['netFlow'],3) ?></td>
+                <td><?php $tmpGlobalFlow = $RecruitmentCalculation[$j][$i]['netFlow'] * $RecruitmentCriterias[$j]->Weight;  echo round($tmpGlobalFlow,3); $globalFlow+=$tmpGlobalFlow; ?></td>
             <?php
             }
             ?>
