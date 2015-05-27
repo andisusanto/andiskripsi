@@ -127,6 +127,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
+                            <span class="glyphicon icon-question-sign" title="The importance of this criteria, higher weight means more important."></span>
                         </div>
 
                         <div class="input-group">
@@ -144,6 +145,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
+                        <span class="glyphicon icon-question-sign" title="When the difference is smaller than the indifference threshold it is considered as negligible by the decision maker."></span>
                         </div>
 
                         <div class="input-group">
@@ -161,6 +163,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
+                        <span class="glyphicon icon-question-sign" title="If the difference exceeds the preference threshold it is considered to be significant(The preference degree will be 1)."></span>
                         </div>
                     </form>
                   </div>
