@@ -15,7 +15,7 @@
     <?php
     $criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
-    {
+    {/*
         ?>
         <h3><?php echo $RecruitmentCriteria->Name; ?> (Weight: <?php echo $RecruitmentCriteria->Weight; ?>)</h3>
         <?php $RecruitmentSubcriterias = $RecruitmentCriteria->get_RecruitmentSubcriteria(0,0,'Value ASC'); ?>
@@ -38,7 +38,7 @@
                 ?>
             </tbody>
         </table>
-        <?php
+        <?php */
         $applicantPreferenceDegree = array();
         foreach($ApplicantRecruitments as $ApplicantRecruitmentA)
         {
@@ -76,8 +76,61 @@
         $criterias[] = $applicantPreferenceDegree;
     }
     ?>
-        <h2>CALCULATION</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width:25%">Applicant Criteria Value</th>
+                    <?php
+                    $ApplicantRecruitmentCalculation = array();
+                    foreach($RecruitmentCriterias as $RecruitmentCriteria)
+                    {
+                    ?>
+                        <th colspan="2"><?php echo $RecruitmentCriteria->Name; ?>(w=<?php echo $RecruitmentCriteria->Weight; ?>)</th>
+                    <?php
+                    }
+                    ?>
+                </tr>
+                    <?php
+                    foreach($RecruitmentCriterias as $RecruitmentCriteria)
+                    {
+                    ?>
+                        <th>Description</th>
+                        <th>Value</th>
+                    <?php
+                    }
+                    ?>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                for($i=0;$i<count($ApplicantRecruitments);$i++)
+                {
+                ?>
+                    <tr>
+                        <td><?php $Applicant = Applicant::GetObjectByKey($Conn, $ApplicantRecruitments[$i]->Applicant); echo $Applicant->Name; ?></td>
+                        <?php
+                            foreach($RecruitmentCriterias as $RecruitmentCriteria)
+                            {
+                                $ApplicantRecruitmentCriteria = ApplicantRecruitmentCriteria::GetObjectByCriteria($Conn,"ApplicantRecruitment = '{$ApplicantRecruitments[$i]->get_Id()}' AND RecruitmentCriteria = '{$RecruitmentCriteria->get_Id()}'");
+                                $ApplicantRecruitmentSubcriteria = RecruitmentSubcriteria::GetObjectByKey($Conn,$ApplicantRecruitmentCriteria->RecruitmentSubcriteria);
+                            ?>
+                                <td><?php echo $ApplicantRecruitmentSubcriteria->Description; ?></td>
+                                <td><?php echo $ApplicantRecruitmentSubcriteria->Value; ?></td>
+                            <?php
+                            }
+                        ?>
+                    </tr>
+                <?php
+                }
+                 $RecruitmentCalculation[] = $ApplicantRecruitmentCalculation;
+                ?>
+            </tbody>
+        </table>
     <?php
+   /* ?>
+        <h2>CALCULATION</h2>
+    <?php */
     $RecruitmentCalculation = array();
     for($h=0;$h<count($RecruitmentCriterias);$h++)
     {
@@ -120,7 +173,7 @@
                         ?>
                         <td><?php $positiveFlow = $positiveFlow / (count($ApplicantRecruitments) - 1); echo round($positiveFlow,3); ?></td>
                         <td><?php $negativeFlow = $negativeFlow / (count($ApplicantRecruitments) - 1); echo round($negativeFlow,3); ?></td>
-                        <td><?php $netFlow = ($positiveFlow - $negativeFlow) / (count($ApplicantRecruitments) - 1); echo round($netFlow,3); ?></td>
+                        <td><?php $netFlow = ($positiveFlow - $negativeFlow); echo round($netFlow,3); ?></td>
                         <?php $Flows = array(); $Flows['positiveFlow'] = $positiveFlow;  $Flows['negativeFlow'] = $negativeFlow;  $Flows['netFlow'] = $netFlow; $ApplicantRecruitmentCalculation[] = $Flows; ?>
                     </tr>
                 <?php
