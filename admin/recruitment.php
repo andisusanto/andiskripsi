@@ -38,7 +38,7 @@
                                         <td><?php echo date('Y-m-d',$Recruitment->EstimationCloseDate); ?></td>
                                         <td><?php echo $Recruitment->getStatusText(); ?></td>
                                         <td>
-                                            <?php if($Recruitment->Status != Recruitment::STATUS_POSTED) {?><a href="processpostrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Post</a> <?php } ?>
+                                            <?php if($Recruitment->Status != Recruitment::STATUS_POSTED) {?><a href="processpostrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Post</a> <?php } else {?> <a href="processcloserecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Close</a> <?php }?>
                                             <a href="editrecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Edit</a>
                                             <a href="analysis.php?Id=<?php echo $Recruitment->get_Id(); ?>">Analysis</a>
                                             <a href="processdeleterecruitment.php?Id=<?php echo $Recruitment->get_Id(); ?>">Delete</a>

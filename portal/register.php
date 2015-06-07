@@ -24,7 +24,7 @@
 
                             <div class="input-group">
                                 <label class="control-label">Date of Birth</label>
-                                <input type="text" name="DateOfBirth" class="form-control" placeholder="DateOfBirth" aria-describedby="basic-addon2" />
+                                <input type="date" name="DateOfBirth" class="form-control" placeholder="DateOfBirth" aria-describedby="basic-addon2" />
                             </div>
                 
                             <div class="input-group">
