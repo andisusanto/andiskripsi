@@ -1,6 +1,16 @@
 <link rel="stylesheet" href="css/custom.css">
-<div class="analysis">
-<?php
+<link rel="stylesheet" href="_js/jquery-ui.min.css">
+<link rel="stylesheet" href="_js/jquery-ui.structure.min.css">
+<link rel="stylesheet" href="_js/jquery-ui.theme.min.css">
+<style>
+    #accordion div
+    {
+        height: auto !important;
+    }
+</style>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="_js/jquery-ui.min.js"></script>
+<div class="analysis"><?php
     include_once('../classes/Recruitment.php');
     include_once('../classes/Applicant.php');
     include_once('../classes/ApplicantRecruitment.php');
@@ -11,34 +21,18 @@
     $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
     $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
     ?>
-    <h1><?php echo $Recruitment->Name; ?></h1>
-    <?php
-    $criterias = array();
+<script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+  </script>
+
+<div id="accordion">
+  <h1><?php echo $Recruitment->Name; ?></h1>
+  <div><?php
+$criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
-    {/*
-        ?>
-        <h3><?php echo $RecruitmentCriteria->Name; ?> (Weight: <?php echo $RecruitmentCriteria->Weight; ?>)</h3>
-        <?php $RecruitmentSubcriterias = $RecruitmentCriteria->get_RecruitmentSubcriteria(0,0,'Value ASC'); ?>
-        <table>
-            <thead>
-                <th style="width:70%">Description</th>
-                <th style="width:30%">Value</th>
-            </thead>
-            <tbody>
-                <?php
-                foreach($RecruitmentSubcriterias as $RecruitmentSubcriteria)
-                {
-                ?>
-                    <tr>
-                        <td><?php echo $RecruitmentSubcriteria->Description; ?></td>
-                        <td><?php echo $RecruitmentSubcriteria->Value; ?></td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
-        <?php */
+    {
         $applicantPreferenceDegree = array();
         foreach($ApplicantRecruitments as $ApplicantRecruitmentA)
         {
@@ -127,10 +121,10 @@
                 ?>
             </tbody>
         </table>
-    <?php
-   /* ?>
-        <h2>CALCULATION</h2>
-    <?php */
+  </div>
+  <h2>Calculation</h2>
+  <div>
+<?php
     $RecruitmentCalculation = array();
     for($h=0;$h<count($RecruitmentCriterias);$h++)
     {
@@ -185,7 +179,9 @@
     <?php
     }
 ?>
-<h3>Global Flows</h3>
+  </div>
+  <h3>Global Flows</h3>
+  <div>
 <table>
     <thead>
         <tr>
@@ -241,6 +237,9 @@
     ?>
     </tbody>
 </table>
+  </div>
+  <h3>Ranking</h3>
+  <div>
 <?php
     $sorted = array();
     $sorted[0] = $ApplicantRecruitmentGlobalFlows[0];
@@ -262,7 +261,6 @@
         }
     }
 ?>
-<h3>Ranking</h3>
 <table>
     <thead>
         <th>Applicant</th>
@@ -284,4 +282,5 @@
         ?>
     </tbody>
 </table>
+  </div>
 </div>
