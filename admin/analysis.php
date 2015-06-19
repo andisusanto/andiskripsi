@@ -23,13 +23,15 @@
     ?>
 <script>
   $(function() {
-    $( "#accordion" ).accordion();
+    $( "#accordion" ).accordion({
+    active:3
+    });
   });
   </script>
-
+<h1><?php echo $Recruitment->Name; ?></h1>
 <div id="accordion">
-  <h1><?php echo $Recruitment->Name; ?></h1>
-  <div><?php
+  <h1>Applicants</h1>
+  <div id="applicants"><?php
 $criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
     {
@@ -55,13 +57,16 @@ $criterias = array();
                 }
                 else
                 {
-                    if ($A_B >= $RecruitmentCriteria->PreferenceThreshold)
+                    $tmpPreferenceThreshold = $RecruitmentCriteria->PreferenceThreshold;
+                    if ($tmpPreferenceThreshold == 0)
+                        $tmpPreferenceThreshold = $RecruitmentCriteria->get_MaximumPreferenceThreshold();
+                    if ($A_B >= $tmpPreferenceThreshold)
                     {
                         $preferenceDegree[] = 1;
                     }
                     else
                     {
-                        $preferenceDegree[] = ($A_B - $RecruitmentCriteria->IndifferenceThreshold) / ($RecruitmentCriteria->PreferenceThreshold - $RecruitmentCriteria->IndifferenceThreshold);
+                        $preferenceDegree[] = ($A_B - $RecruitmentCriteria->IndifferenceThreshold) / ($tmpPreferenceThreshold - $RecruitmentCriteria->IndifferenceThreshold);
                     }
                 }
             }
@@ -123,7 +128,7 @@ $criterias = array();
         </table>
   </div>
   <h2>Calculation</h2>
-  <div>
+  <div id="calculation">
 <?php
     $RecruitmentCalculation = array();
     for($h=0;$h<count($RecruitmentCriterias);$h++)
@@ -181,7 +186,7 @@ $criterias = array();
 ?>
   </div>
   <h3>Global Flows</h3>
-  <div>
+  <div id="globalflows">
 <table>
     <thead>
         <tr>
@@ -238,8 +243,8 @@ $criterias = array();
     </tbody>
 </table>
   </div>
-  <h3>Ranking</h3>
-  <div>
+  <h3 id="hranking">Ranking</h3>
+  <div id="ranking">
 <?php
     $sorted = array();
     $sorted[0] = $ApplicantRecruitmentGlobalFlows[0];

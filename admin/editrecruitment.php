@@ -129,42 +129,6 @@
                             </select>
                             <span class="glyphicon icon-question-sign" title="The importance of this criteria, higher weight means more important."></span>
                         </div>
-
-                        <div class="input-group">
-                            <label class="control-label required">Indifference Threshold <span class="required">*</span></label>
-                            <select name="IndifferenceThreshold" class="form-control" placeholder="IndifferenceThreshold" aria-describedby="basic-addon2">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        <span class="glyphicon icon-question-sign" title="When the difference is smaller than the indifference threshold it is considered as negligible by the decision maker."></span>
-                        </div>
-
-                        <div class="input-group">
-                            <label class="control-label required">Preference Threshold <span class="required">*</span></label>
-                            <select name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        <span class="glyphicon icon-question-sign" title="If the difference exceeds the preference threshold it is considered to be significant(The preference degree will be 1)."></span>
-                        </div>
                     </form>
                   </div>
                   <div class="modal-footer">

@@ -35,7 +35,17 @@ class RecruitmentCriteria extends BaseObject{
        if (count($RecruitmentCriterias) == 0) throw new Exception("No subcriteria found");
        return $RecruitmentCriterias[0];
    }
-
+    public function get_MaximumPreferenceThreshold()
+    {
+        $result = $this->get_mySQLi()->query("SELECT MAX(RecruitmentSubcriteria.Value) - MIN(RecruitmentSubcriteria.Value) AS Max FROM `RecruitmentSubcriteria` WHERE RecruitmentCriteria = '$this->Id' GROUP BY RecruitmentCriteria");
+        if($row = $result->fetch_array()){
+            return $row['Max'];
+        }
+        else
+        {
+            return 0;
+        }
+    }
    public static function GetObjectByKey($mySQLi, $Id){
        if($result = $mySQLi->query("SELECT * FROM ".self::TABLENAME." WHERE Id = ".$mySQLi->real_escape_string($Id)." LIMIT 1")){
            if($row = $result->fetch_array()){

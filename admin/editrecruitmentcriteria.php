@@ -66,7 +66,7 @@
                 <div class="input-group">
                     <label class="control-label">Preference Threshold</label>
                     <select name="PreferenceThreshold" class="form-control" placeholder="PreferenceThreshold" aria-describedby="basic-addon2">
-                        <option value="0" <?php if($RecruitmentCriteria->PreferenceThreshold == 0) echo "selected"; ?>>0</option>
+                        <option value="0" <?php if($RecruitmentCriteria->PreferenceThreshold == 0) echo "selected"; ?>>Max</option>
                         <option value="1" <?php if($RecruitmentCriteria->PreferenceThreshold == 1) echo "selected"; ?>>1</option>
                         <option value="2" <?php if($RecruitmentCriteria->PreferenceThreshold == 2) echo "selected"; ?>>2</option>
                         <option value="3" <?php if($RecruitmentCriteria->PreferenceThreshold == 3) echo "selected"; ?>>3</option>
