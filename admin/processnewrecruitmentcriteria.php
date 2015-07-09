@@ -10,8 +10,8 @@ try {
     $RecruitmentCriteria->Recruitment = $_POST['Recruitment'];
     $RecruitmentCriteria->Name = $_POST['Name'];
     $RecruitmentCriteria->Weight = $_POST['Weight'];
-    $RecruitmentCriteria->IndifferenceThreshold = $_POST['IndifferenceThreshold'];
-    $RecruitmentCriteria->PreferenceThreshold = $_POST['PreferenceThreshold'];
+    $RecruitmentCriteria->IndifferenceThreshold = 0;//$_POST['IndifferenceThreshold'];
+    $RecruitmentCriteria->PreferenceThreshold = 0;//$_POST['PreferenceThreshold'];
 
     $RecruitmentCriteria->Save();
     $Conn->Commit();

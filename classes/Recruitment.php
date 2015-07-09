@@ -42,7 +42,7 @@ class Recruitment extends BaseObject{
        return self::TABLENAME;
    }
    public function get_ApplicantRecruitment($page=0,$totalitem=0){
-       return ApplicantRecruitment::LoadCollection($this->get_mySQLi(),"Recruitment = ".$this->Id,'Id DESC',$page,$totalitem);
+       return ApplicantRecruitment::LoadCollection($this->get_mySQLi(),"Recruitment = ".$this->Id,'Id ASC',$page,$totalitem);
    }
    public function get_RecruitmentCriteria($page=0,$totalitem=0){
        return RecruitmentCriteria::LoadCollection($this->get_mySQLi(),"Recruitment = ".$this->Id,'Id DESC',$page,$totalitem);

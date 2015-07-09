@@ -1,3 +1,14 @@
+<?php
+    include_once('../classes/Recruitment.php');
+    include_once('../classes/Applicant.php');
+    include_once('../classes/ApplicantRecruitment.php');
+    include_once('../classes/ApplicantRecruitmentCriteria.php');
+    include_once('../classes/Connection.php');
+    $Conn = Connection::get_DefaultConnection();
+    $Recruitment = Recruitment::GetObjectByKey($Conn, $_GET['Id']);
+    $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
+    $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
+?>
 <link rel="stylesheet" href="css/custom.css">
 <link rel="stylesheet" href="_js/jquery-ui.min.css">
 <link rel="stylesheet" href="_js/jquery-ui.structure.min.css">
@@ -10,17 +21,15 @@
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="_js/jquery-ui.min.js"></script>
-<div class="analysis"><?php
-    include_once('../classes/Recruitment.php');
-    include_once('../classes/Applicant.php');
-    include_once('../classes/ApplicantRecruitment.php');
-    include_once('../classes/ApplicantRecruitmentCriteria.php');
-    include_once('../classes/Connection.php');
-    $Conn = Connection::get_DefaultConnection();
-    $Recruitment = Recruitment::GetObjectByKey($Conn, $_GET['Id']);
-    $ApplicantRecruitments = $Recruitment->get_ApplicantRecruitment();
-    $RecruitmentCriterias = $Recruitment->get_RecruitmentCriteria();
-    ?>
+<script type="text/javascript">
+    function printSection (content, title, sectionname) {
+        var OpenWindow = window.open("report.php", title, '');
+        var reportheader = '<h1><?php echo $Recruitment->Name; ?></h1>';
+        var reportsection = '<h2>' + sectionname + '</h2>';
+        OpenWindow.dataFromParent = reportheader + reportsection + content;
+    }
+</script>
+<div class="analysis">
 <script>
   $(function() {
     $( "#accordion" ).accordion({
@@ -31,6 +40,7 @@
 <h1><?php echo $Recruitment->Name; ?></h1>
 <div id="accordion">
   <h1>Applicants</h1>
+  <div><a href="#" onclick="printSection(document.getElementById('applicants').innerHTML, 'Applicants', 'Applicants')"> Print this section </a>
   <div id="applicants"><?php
 $criterias = array();
     foreach($RecruitmentCriterias as $RecruitmentCriteria)
@@ -127,7 +137,9 @@ $criterias = array();
             </tbody>
         </table>
   </div>
+  </div>
   <h2>Calculation</h2>
+  <div><a href="#" onclick="printSection(document.getElementById('calculation').innerHTML, 'Calculation', 'Calculation')"> Print this section </a>
   <div id="calculation">
 <?php
     $RecruitmentCalculation = array();
@@ -185,7 +197,9 @@ $criterias = array();
     }
 ?>
   </div>
+  </div>
   <h3>Global Flows</h3>
+  <div><a href="#" onclick="printSection(document.getElementById('globalflows').innerHTML, 'Global Flows', 'Global Flows')"> Print this section </a>
   <div id="globalflows">
 <table>
     <thead>
@@ -243,7 +257,9 @@ $criterias = array();
     </tbody>
 </table>
   </div>
+  </div>
   <h3 id="hranking">Ranking</h3>
+  <div><a href="#" onclick="printSection(document.getElementById('ranking').innerHTML, 'Ranking', 'Ranking')"> Print this section </a>
   <div id="ranking">
 <?php
     $sorted = array();
@@ -288,4 +304,6 @@ $criterias = array();
     </tbody>
 </table>
   </div>
+  </div>
 </div>
+  <div><a href="#" onclick="printSection(document.getElementById('applicants').innerHTML+document.getElementById('calculation').innerHTML+document.getElementById('globalflows').innerHTML+document.getElementById('ranking').innerHTML, 'All', '')"> Print </a>

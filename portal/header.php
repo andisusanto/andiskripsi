@@ -52,16 +52,17 @@
             $Applicant = Applicant::GetObjectByKey($Conn,$_SESSION['CurrentApplicantId']);
         ?>
             <li id="logout" class="first"><a href="processlogout.php">(<?php echo $Applicant->Name; ?>) Log out</a></li>
+            <li id="register"><a href="editprofile.php">Edit Profile</a></li>
         <?php
         }
         else
         {
         ?>
             <li id="login" class="first"><a href="login.php">Login</a></li>
+            <li id="register"><a href="register.php">Register</a></li>
         <?php
         }
       ?>
-      <li id="register"><a href="register.php">Register</a></li>
     </ul>
     <!-- /User Menu --> 
     

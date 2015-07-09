@@ -68,6 +68,9 @@
                             <li>
                                 <a href="admin.php">Admin</a>
                             </li>
+                            <li>
+                                <a href="report.php">Report</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

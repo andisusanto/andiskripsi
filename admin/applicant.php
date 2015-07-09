@@ -20,7 +20,6 @@
                                         <th>Phone Number</th>
                                         <th>UserName</th>
                                         <th>Is Active</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,7 +41,7 @@
                                     <td><?php echo $Applicant->PhoneNumber; ?></td>
                                     <td><?php echo $Applicant->UserName; ?></td>
                                     <td><?php echo Helper::getBooleanTextValue($Applicant->IsActive); ?></td>
-                                    <td><a href="editapplicant.php?Id=<?php echo $Applicant->get_Id(); ?>">Edit</a> <a href="processdeleteapplicant.php?Id=<?php echo $Applicant->get_Id(); ?>">Delete</a></td>
+                                    <!--<td><a href="editapplicant.php?Id=<?php echo $Applicant->get_Id(); ?>">Edit</a> <a href="processdeleteapplicant.php?Id=<?php echo $Applicant->get_Id(); ?>">Delete</a></td>-->
                                     </tr>
                                     <?php
                                     }
